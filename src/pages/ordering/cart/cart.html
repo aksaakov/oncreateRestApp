@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle *ngIf="loggedIn">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            {{ 'cart.title' | translate }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="products-content">
+    <div *ngIf="items.length == 0" class="text-center">
+        <br>
+        <br>
+        <br>
+        {{ 'cart.empty' | translate }}
+    </div>
+    <div class="product" *ngFor="let item of items">
+        <div *ngIf="item.product.images.length > 0" class="product-images">
+            <img [src]="item.product.images[0]">
+        </div>
+        <div padding class="product-info">
+            <h2>{{ item.product.name }}</h2>
+            <p class="product-descr">{{ item.product.description }}</p>
+            <div class="product-price">
+                <span *ngIf="item.product.price_old && (item.product.price_old > 0)"><s>{{ item.product.price_old }}</s></span>
+                <span>{{ item.product.price  | ecurrency }} x {{item.count }} = {{ item.product.price * item.count | ecurrency }}</span>
+            </div>
+            <ion-row no-padding>
+                <ion-col>
+                    <button ion-button block outline color="light" icon-left (click)="decreaseCart(item)">
+                        -
+                    </button>
+                </ion-col>
+                <ion-col class="text-center product-count">
+                    {{ item.count }}
+                </ion-col>
+                <ion-col>
+                    <button ion-button block outline color="light" icon-left (click)="increaseCart(item)">
+                        +
+                    </button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>
+<ion-footer [hidden]="items.length == 0">
+    <div class="cart-total">{{ 'cart.total' | translate }}: {{ cartPrice() | ecurrency }}</div>
+    <button type="button" ion-button block (click)="showOrderModal()" class="place-order-button">
+        {{ 'cart.order' | translate }}
+    </button>
+</ion-footer>

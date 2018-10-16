@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar custom-navbar>
+        <ion-title>
+            {{ 'order.view' | translate }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-item>
+            <h2 [translate]="'order.id'" [translateParams]="{ id: order.id }"></h2>
+            <p *ngIf="order.order_status">{{ order.order_status.name }}</p>
+            <p>{{ order.name }}</p>
+            <p>{{ order.phone }}</p>
+            <p>{{ order.address }}</p>
+            <p>{{ stringAsDate(order.created_at) | date: date_format }}</p>
+        </ion-item>
+        <ion-item *ngIf="order.restaurant && multiR">
+            <p>{{ order.restaurant.name }}</p>
+        </ion-item>
+        <ion-item *ngFor="let item of order.ordered_products">
+            <p>{{ item.product.name }}</p>
+            <p>{{ item.product.price | ecurrency }} x {{ item.count }} = {{ item.product.price * item.count | ecurrency }}</p>
+        </ion-item>
+        <ion-item>
+            <p><b>{{ 'order.delivery_price' | translate }}</b> {{ order.delivery_price | ecurrency }}</p>
+            <p><b>{{ 'order.total' | translate }}</b> {{ order.total | ecurrency }}</p>
+            <p><b>{{ 'order.tax' | translate }}</b> {{ order.tax | ecurrency }}</p>
+            <p><b>{{ 'order.total_with_tax' | translate }}</b> {{ order.total_with_tax + order.delivery_price | ecurrency }}</p>
+        </ion-item>
+    </ion-card>
+</ion-content>

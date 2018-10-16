@@ -1,0 +1,7 @@
+#!/bin/bash
+ionic build android --prod
+cordova build --release android
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/Dropbox/ecommerce.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name
+rm platforms/android/build/outputs/apk/android-release.apk
+rm Ecommerce.apk
+/usr/local/Cellar/android-sdk/24.4.1_1/build-tools/24.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk Ecommerce.apk

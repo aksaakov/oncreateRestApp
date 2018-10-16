@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar custom-navbar>
+    <ion-title>
+      <span *ngIf="category">{{ category.name }}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="products-content">
+  <ion-searchbar [(ngModel)]="searchQ" [showCancelButton]="true"
+  (ionInput)="onSearchInput($event)">
+  </ion-searchbar>
+
+  <div *ngIf="layout == 2">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let product of products">
+          <div class="product -two-column">
+            <img [src]="product.images[0]" *ngIf="product.images.length == 1">
+            <div padding class="product-info">
+              <product-info [product]="product" [descr]="false"></product-info>
+              <button ion-button block icon-left (click)="addToCart(product)" color="{{ product.added ? 'secondary' : 'primary' }}">
+                <ion-icon name='cart'></ion-icon>
+                <span *ngIf="!product.added">{{ 'products.to_cart' | translate }}</span>
+                <span *ngIf="product.added">{{ 'products.in_cart' | translate }}</span>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="layout == 1">
+    <ion-item text-wrap class="product-2" *ngFor="let product of products">
+      <ion-avatar item-start *ngIf="product.images.length">
+        <img [src]="product.images[0]" alt="">
+      </ion-avatar>
+      <product-info [product]="product" [descr]="false"></product-info>
+      <button item-end ion-button icon-left (click)="addToCart(product)" color="{{ product.added ? 'secondary' : 'primary' }}">
+        <ion-icon name='cart'></ion-icon>
+        <span *ngIf="!product.added">{{ 'products.to_cart' | translate }}</span>
+        <span *ngIf="product.added">{{ 'products.in_cart' | translate }}</span>
+      </button>
+    </ion-item>
+  </div>
+
+  <div *ngIf="layout == 0">
+    <div class="product" *ngFor="let product of products">
+      <div *ngIf="product.images.length > 0" class="product-images">
+        <img [src]="product.images[0]" *ngIf="product.images.length == 1">
+        <ion-slides pager *ngIf="product.images.length > 1">
+          <ion-slide *ngFor="let image of product.images">
+            <img [src]="image">
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <div padding class="product-info">
+        <product-info [product]="product" [descr]="true"></product-info>
+        <button ion-button block icon-left (click)="addToCart(product)" color="{{ product.added ? 'secondary' : 'primary' }}">
+          <ion-icon name='cart'></ion-icon>
+          <span *ngIf="!product.added">{{ 'products.to_cart' | translate }}</span>
+          <span *ngIf="product.added">{{ 'products.in_cart' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

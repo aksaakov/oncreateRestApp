@@ -1,0 +1,8 @@
+<div>
+  <h2>{{ product.name }}</h2>
+  <p class="product-descr" *ngIf="descr">{{ product.description }}</p>
+  <div class="product-price">
+    <span *ngIf="product.price_old && (product.price_old > 0)"><s>{{ product.price_old | ecurrency }}</s></span>
+    <span>{{ product.price | ecurrency }}</span>
+  </div>
+</div>

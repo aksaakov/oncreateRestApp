@@ -1,0 +1,36 @@
+<ion-content class="signup-page">
+	<div padding class="wrap">
+    <div class="icon">
+      <img src="assets/icon.png" alt="">
+    </div>
+		<form (ngSubmit)="doSignup()" *ngIf="active" novalidate [formGroup]="loginForm" class="signup-form">
+			<ion-item>
+				<ion-input placeholder="{{ 'signup.name' | translate }}" type="text" [formControl]="loginForm.controls.name">
+				</ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input placeholder="{{ 'signup.phone' | translate }}" type="text" [formControl]="loginForm.controls.phone">
+				</ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input placeholder="{{ 'signup.email' | translate }}" type="text" [formControl]="loginForm.controls.email">
+				</ion-input>
+			</ion-item>
+			<ion-item *ngIf="multipleCities">
+				<ion-select placeholder="{{ 'signup.city' | translate }}" [formControl]="loginForm.controls.city_id">
+					<ion-option *ngFor="let city of cities" value="{{ city.id }}">{{ city.name }}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item class="iconed-input">
+				<ion-input placeholder="{{ 'signup.password' | translate }}" type="password" [formControl]="loginForm.controls.password">
+				</ion-input>
+			</ion-item>
+			<button ion-button type="submit" block color="primary" [disabled]="loginForm.invalid">
+				{{ 'signup.button' | translate }}
+			</button>
+			<div class="login-links">
+				<a (click)="login()">{{ 'signup.login' | translate }}</a>
+			</div>
+		</form>
+	</div>
+</ion-content>

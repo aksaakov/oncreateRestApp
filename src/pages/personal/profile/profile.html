@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{ 'profile.title' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button block (click)="save()">
+				{{ 'profile.save' | translate }}
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<form (ngSubmit)="save()" *ngIf="active" novalidate [formGroup]="profileForm" class="signup-form">
+		<ion-item>
+			<ion-label stacked>{{ 'profile.email' | translate }}</ion-label>
+			<ion-input type="text" [formControl]="profileForm.controls.email">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>{{ 'profile.name' | translate }}</ion-label>
+			<ion-input type="text" [formControl]="profileForm.controls.name">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>{{ 'profile.phone' | translate }}</ion-label>
+			<ion-input type="text" [formControl]="profileForm.controls.phone">
+			</ion-input>
+		</ion-item>
+		<ion-item *ngIf="showCities">
+			<ion-label stacked>{{ 'profile.city' | translate }}</ion-label>
+			<ion-select placeholder="{{ 'signup.city' | translate }}" [formControl]="profileForm.controls.city_id">
+				<ion-option *ngFor="let city of cities" value="{{ city.id }}">{{ city.name }}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>{{ 'profile.password' | translate }}</ion-label>
+			<ion-input type="password" [formControl]="profileForm.controls.password">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>{{ 'profile.password_confirmation' | translate }}</ion-label>
+			<ion-input type="password" [formControl]="profileForm.controls.password_confirmation">
+			</ion-input>
+		</ion-item>
+	</form>
+</ion-content>

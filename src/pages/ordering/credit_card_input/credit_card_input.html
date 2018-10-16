@@ -1,0 +1,26 @@
+<ion-content>
+<div padding>
+	<br>
+	<br>
+	<form [formGroup]="cardForm" (ngSubmit)="pay()" novalidate>
+		<ion-item>
+            <ion-label fixed>{{ 'credit_card.number' | translate }}</ion-label>
+            <ion-input type="number" pattern="[0-9]*" [formControl]="cardForm.controls.number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>{{ 'credit_card.exp_month' | translate }}</ion-label>
+            <ion-input type="number" pattern="[0-9]*" [formControl]="cardForm.controls.expMonth"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>{{ 'credit_card.exp_year' | translate }}</ion-label>
+            <ion-input type="number" pattern="[0-9]*" [formControl]="cardForm.controls.expYear"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>{{ 'credit_card.cvc' | translate }}</ion-label>
+            <ion-input type="number" pattern="[0-9]*" [formControl]="cardForm.controls.cvc"></ion-input>
+        </ion-item>
+        <button type="submit" ion-button block primary>{{ 'credit_card.pay' | translate }}</button>
+        <button (click)="closeModal()" type="button" ion-button block>{{ 'credit_card.cancel' | translate }}</button>
+	</form>
+</div>
+</ion-content>

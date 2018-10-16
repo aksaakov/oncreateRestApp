@@ -1,0 +1,21 @@
+<div class="welcome-screen">
+    <div class="welcome-group">
+        <p class="text-center">
+            <!--<span class="welcome-icon">-->
+              <!--<span class="inner"></span>-->
+            <!--</span>-->
+            <span class="welcome-text">
+                {{ 'welcome.welcome' | translate }}<br/>{{ 'welcome.app_name' | translate }}
+            </span>
+        </p>
+    </div>
+    <div class="welcome-content" *ngIf="!signup">
+        <button ion-button block large class="start-button" (click)="startApp()">{{ 'welcome.start' | translate }}</button>
+    </div>
+    <div class="welcome-content" *ngIf="signup">
+        <button ion-button block large class="start-button" (click)="goToSignup()">{{ 'welcome.signup' | translate }}</button>
+        <div class="text-center">
+            <a (click)="goToLogin()">{{ 'welcome.login' | translate }}</a>
+        </div>
+    </div>
+</div>

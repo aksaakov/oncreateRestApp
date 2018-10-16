@@ -1,0 +1,36 @@
+<div class="map-holder">
+    <div #map class="address-map">
+    </div>
+    <div class="address-input-holder">
+        <ion-item tappable (click)="showAddressCompletionWindow()">
+            <ion-input disabled [(ngModel)]="address"></ion-input>
+        </ion-item>
+    </div>
+    <div class="address-input-buttons">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <button ion-button block outline class="address-input-cancel" (click)="closeModal()">{{ 'map.cancel' | translate }}</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button block (click)="setAddress()">{{ 'map.select' | translate }}</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</div>
+<div class="map-autocomplete-holder" [ngClass]="{ '-visible': !mapMode }">
+    <ion-header>
+        <ion-toolbar class="address-toolbar">
+            <ion-title>&nbsp;</ion-title>
+            <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="closeModal()"></ion-searchbar>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list class="address-variants">
+            <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+                {{ item }}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>

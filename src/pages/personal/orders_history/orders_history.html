@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar custom-navbar>
+        <button ion-button menuToggle *ngIf="loggedIn">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            {{ 'order.history' | translate }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let order of orders" (click)="showOrder(order)">
+        <ion-item>
+            <h2 [translate]="'order.id'" [translateParams]="{ id: order.id }"></h2>
+            <p>{{ order.address }}</p>
+            <p>{{ stringAsDate(order.created_at) | date: date_format }}</p>
+        </ion-item>
+        <ion-item>
+            <p *ngIf="order.restaurant && multiR">
+                {{ order.restaurant.name }}
+            </p>
+            <p><b>{{ order.total_with_tax | ecurrency }}</b></p>
+        </ion-item>
+    </ion-card>
+</ion-content>

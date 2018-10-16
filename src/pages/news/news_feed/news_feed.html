@@ -1,0 +1,23 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle *ngIf="loggedIn">
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'news.title' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card *ngFor="let item of items" tappable (click)="showDetails(item)" >
+		<ion-item text-wrap>
+			<ion-avatar item-left>
+				<img [src]="item.image_url" *ngIf="item.image_url">
+			</ion-avatar>
+			<h2>{{ item.title }}</h2>
+			<p>
+				<small>{{ stringAsDate(item.created_at) | date: date_format }}</small>
+			</p>
+			<p>{{ item.announce }}</p>
+		</ion-item>
+	</ion-card>
+</ion-content>

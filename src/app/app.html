@@ -1,0 +1,17 @@
+<!-- <ion-split-pane> -->
+	<ion-menu [content]="myNav" persistent="true" type="overlay" [hidden]="!loggedIn">
+		<ion-content>
+			<div>
+				<ion-list>
+					<button menuClose ion-item (click)="openProfile()" class="-b5">
+						{{ 'menu.profile' | translate }}
+					</button>
+					<button menuClose ion-item (click)="logout()" class="-b7">
+						{{ 'menu.logout' | translate }}
+					</button>
+				</ion-list>
+			</div>
+		</ion-content>
+	</ion-menu>
+	<ion-nav #myNav swipeBackEnabled="false" [root]="rootPage"></ion-nav>
+<!-- </ion-split-pane> -->

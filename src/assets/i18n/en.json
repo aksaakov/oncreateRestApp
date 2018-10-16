@@ -1,0 +1,126 @@
+{
+	"welcome": {
+		"welcome": "Welcome to",
+		"app_name": "Hot & Grill",
+		"start": "Start the app",
+		"signup": "Signup",
+		"login": "Already have an account?"
+	},
+	"tabs": {
+		"news": "News",
+		"menu": "Menu",
+		"cart": "My Cart",
+		"orders_list": "History",
+    "loyalty": "Loyalty program"
+	},
+  "loyalty": {
+    "heading": "Order From Hot & Grill And Get Rewarded",
+    "description": "every <b>{{loyalty_points_per_amount}}</b> spent gives you <b>{{loyalty_points_per_order}}</b> points and for every <b>{{loyalty_points_for_reward}}</b> points get you <b>{{loyalty_reward_amount}}</b> in credit"
+  },
+	"products": {
+		"to_cart": "Add to cart",
+		"in_cart": "Already in cart"
+	},
+	"order": {
+    "use_reward": "Use reward ({{amount}} maximum)",
+    "use": "Use",
+    "loyalty_used": "Loyalty reward {{amount}}",
+    "price": "Order price",
+		"id": "Order #{{id}}",
+		"view": "Order details",
+		"title": "Make an Order",
+		"name": "Name",
+		"phone": "Phone",
+		"address": "Address",
+    "comment": "Comment",
+		"promo_code": "Promo code",
+		"click_to_write": "Click to write",
+		"optional": "Optional",
+		"check_promo": "Check",
+		"cash_on_delivery": "Cash on delivery",
+		"stripe": "Stripe",
+		"paypal": "PayPal",
+		"delivery_price": "Delivery price:",
+		"coupon_discount": "Coupon Discount:",
+		"total": "Total:",
+		"place_order": "Place Order",
+		"promo_not_found": "Promo code not found",
+		"promo_invalid": "Promo code is invalid or cannot be used",
+		"general_error": "General Error",
+		"error_title": "Error",
+		"success": "Success!",
+		"promo_applied": "Coupon is applied",
+		"order_placed": "Your order has been placed successfully",
+		"payment_error": "Error processing payment",
+		"paypal_error": "Error executing PayPal payment",
+		"tax": "Tax",
+		"total_with_tax": "Total with Tax",
+		"history": "Orders history"
+	},
+	"buttons": {
+		"ok": "OK",
+		"cancel": "Cancel"
+	},
+	"news": {
+		"title": "News"
+	},
+	"loading": "App is loading, please wait",
+	"credit_card": {
+		"number": "Card number",
+		"exp_month": "Expiration month",
+		"exp_year": "Expiration year",
+		"cvc": "CVC",
+		"pay": "Pay with Card",
+		"cancel": "Cancel"
+	},
+	"catalog": {
+		"title": "Catalog"
+	},
+	"cart": {
+		"title": "My Cart",
+		"empty": "Your cart is empty",
+		"total": "Total",
+		"order": "Place order",
+		"add_from_other_restaurant_title": "Add product from different restaurant",
+		"add_from_other_restaurant_text": "You are going to add product from different restaurant. This will clear your cart first. Continue?"
+	},
+	"map": {
+		"cancel": "Cancel",
+		"select": "Select address",
+		"no_service": "Delivery location is not in service area"
+	},
+	"signup": {
+		"name": "Name",
+		"phone": "Mobile number",
+		"email": "Email",
+		"password": "Password",
+		"city": "City",
+		"button": "Signup",
+		"login": "Login using existing account",
+		"error": "General error has occurred during signup"
+	},
+	"menu": {
+		"profile": "Profile & Settings",
+		"logout": "Logout"
+	},
+	"restaurants": {
+		"title": "Choose Restaurant"
+	},
+	"profile": {
+		"title": "My Profile",
+		"save": "Save",
+		"email": "Email",
+		"name": "Name",
+		"city": "City",
+		"phone": "Phone",
+		"password": "Password",
+		"password_confirmation": "Confirm password"
+	},
+	"login": {
+		"email": "Email",
+		"password": "Password",
+		"button": "Login",
+		"no_account": "Signup for new account",
+		"error": "Email or password is wrong"
+	}
+}

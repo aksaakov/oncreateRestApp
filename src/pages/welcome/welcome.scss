@@ -1,0 +1,64 @@
+.welcome-screen {
+  background: url('../assets/welcome.jpg') center center no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  .start-button {
+    color: #fff;
+    background: rgb(255, 107, 0) !important;
+    font-weight: normal;
+    text-transform: none;
+  }
+}
+.welcome-content {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0 10px 40px 10px;
+  // button {
+  //   background: #C6C522;
+  //   color: #000;
+  //   width: 50%;
+  //   margin: 0 auto;
+  // }
+}
+
+.welcome-group {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  p {
+    text-align: center;
+    font-size: 27px;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+}
+
+.welcome-icon {
+  display: none;
+  width: 70px;
+  height: 70px;
+  background: url('../assets/for_logo.png') center center no-repeat;
+  background-size: 22px 28px;
+  border: 2px solid #fff;
+  padding: 6px;
+  border-radius: 50%;
+  .inner {
+    display: inline-block;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+  }
+}
+
+.welcome-text {
+  display: block;
+  padding-top: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1px;
+  line-height: 40px;
+}

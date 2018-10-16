@@ -1,0 +1,28 @@
+page-signup, page-login {
+  .content {
+  }
+  .icon {
+    width: 30%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+  .login-links {
+  	text-align: center;
+  	padding: 40px 0 20px 0;
+  	a {
+  	  color: #fdcc52;
+  	}
+  }
+  .scroll-content {
+  	display: flex;
+  	align-items: center;
+  	.wrap {
+  		width: 100%;
+  	}
+  }
+  }

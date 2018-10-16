@@ -1,0 +1,39 @@
+.products-content {
+    background: rgb(248, 249, 249);
+}
+
+.product {
+    background: #fff;
+    margin: 15px 10px;
+  &.-two-column {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.product-images {
+    margin: 0 12px;
+}
+
+.product-info {
+    h2 {
+        color: $c_color_secondary;
+        font-weight: normal;
+    }
+    .price, .price * {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .product-descr {
+        color: rgb(96, 100, 103);
+        white-space: normal;
+    }
+}
+
+.product-2 {
+  ion-avatar {
+    img {
+      border-radius: 0;
+    }
+  }
+}

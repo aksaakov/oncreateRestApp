@@ -1,0 +1,7 @@
+<ion-tabs>
+	<ion-tab [root]="tab0Root" tabTitle="{{ 'tabs.news' | translate }} " tabIcon="paper"></ion-tab>
+	<ion-tab [root]="tab1Root" tabTitle="{{ 'tabs.menu' | translate }} " tabIcon="cafe"></ion-tab>
+	<ion-tab [root]="tab2Root" tabTitle="{{ 'tabs.cart' | translate }}" tabIcon="cart" tabBadge="{{ count > 0 ? count : '' }}"></ion-tab>
+	<ion-tab [root]="tab3Root" tabTitle="{{ 'tabs.orders_list' | translate }}" tabIcon="albums"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="{{ 'tabs.loyalty' | translate }}" tabIcon="ribbon"></ion-tab>
+</ion-tabs>

@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle *ngIf="loggedIn">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <span *ngIf="rootCategory">{{ rootCategory.name }}</span>
+            <span *ngIf="!rootCategory">{{ 'catalog.title' | translate }}</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="layout == 0">
+    <div *ngFor="let category of categories; let i = index;" (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
+      <div class="title">{{ category.name }}</div>
+    </div>
+  </div>
+  <div *ngIf="layout == 1">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let category of categories; let i = index;">
+          <div (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
+            <div class="title">{{ category.name }}</div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle *ngIf="loggedIn">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <span *ngIf="rootCategory">{{ rootCategory.name }}</span>
+            <span *ngIf="!rootCategory">{{ 'restaurants.title' | translate }}</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let item of items; let i = index;" (click)="showDetails(item)" tappable>
+        <img [src]="item.image_url">
+        <ion-card-content>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

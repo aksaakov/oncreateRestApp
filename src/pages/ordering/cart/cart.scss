@@ -1,0 +1,16 @@
+.place-order-button {
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+.cart-total {
+    font-weight: bold;
+    padding: 3px 15px;
+    background: #fff;
+    font-size: 16px;
+    border-top: 1px solid lighten($c_color_light, 10%);
+    &.-nob {
+        border: none;
+        padding: 5px 15px;
+    }
+}

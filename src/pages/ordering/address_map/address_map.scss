@@ -1,0 +1,68 @@
+.address-map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100500;
+}
+
+.address-input-holder {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  padding: 0 10px;
+  z-index: 100900;
+  input {
+    cursor: pointer;
+    z-index: 200900;
+    position: relative;
+  }
+}
+
+.address-input-buttons {
+  width: 90%;
+  position: absolute;
+  bottom: 10px;
+  padding-left: 10px;
+  z-index: 100700;
+}
+
+.address-input-cancel {
+  background: #fff;
+  &:hover, &:active, &.pressed {
+    background: #fff !important;
+  }
+}
+
+.map-holder {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1005;
+}
+
+.map-autocomplete-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 200500;
+  background: #f8f8f8;
+  &.-visible {
+    display: block;
+  }
+  .header-ios {
+    top: 20px;
+  }
+  .content-ios {
+    background: #f8f8f8 !important;
+    .scroll-content {
+      padding-top: 72px;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.loyalty {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  .fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: url(../assets/progress-fill.png) center bottom no-repeat;
+    background-size: 100%;
+    opacity: 0.6;
+  }
+  img {
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    display: block;
+  }
+}
+
+.progress-bar {
+  height: 5px;
+  position: relative;
+  background: $c_color_light;
+  margin: -15px -15px 15px -15px;
+  .fill {
+    height: 5px;
+    background: $c_color_primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.loyalty-counter {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  border-radius: 50%;
+  font-size: 40px;
+  font-style: italic;
+}
+
+.loyalty-progress-holder {
+  position: relative;
+  max-width: 80%;
+  margin: 30px auto 0 auto;
+  .text {
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    .points {
+      display: block;
+      font-size: 30px;
+    }
+  }
+  .available {
+    color: $c_color_primary;
+    font-size: 30px;
+    small {
+      font-size: 13px;
+      color: #000;
+    }
+  }
+}
+
+.loyalty-reward {
+  border-top: 1px solid $c_color_light;
+  border-bottom: 1px solid $c_color_light;
+  text-align: center;
+  padding: 10px 0;
+  margin: 15px 0;
+  .small {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .value {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+.loyalty-text {
+  font-size: 16px;
+  text-align: center;
+}
+
+.loyalty-header {
+  border-bottom: 1px solid $c_color_light;
+  ion-avatar {
+    img {
+      border-radius: 0 !important;
+    }
+  }
+}

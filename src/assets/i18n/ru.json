@@ -1,0 +1,72 @@
+{
+	"welcome": {
+		"welcome": "Добро пожаловать в",
+		"app_name": "Hot & Grill",
+		"start": "Начать"
+	},
+	"tabs": {
+		"news": "Новости",
+		"menu": "Меню",
+		"cart": "Моя корзина"
+	},
+	"products": {
+		"to_cart": "Добавить в корзину"
+	},
+	"order": {
+		"title": "Новый заказ",
+		"name": "Имя",
+		"phone": "Телефон",
+		"address": "Адрес",
+		"promo_code": "Промокод",
+		"click_to_write": "",
+		"optional": "Не обязательно",
+		"check_promo": "Проверить",
+		"cash_on_delivery": "Наличными",
+		"stripe": "Stripe",
+		"paypal": "PayPal",
+		"delivery_price": "Стоимость доставки:",
+		"coupon_discount": "Скидка:",
+		"total": "Итого:",
+		"place_order": "Заказать",
+		"promo_not_found": "Промокод не найден",
+		"promo_invalid": "Промокод неверный или уже использован",
+		"general_error": "Общая ошибка",
+		"error_title": "Ошибка",
+		"success": "Готово!",
+		"promo_applied": "Купон применен",
+		"order_placed": "Ваш заказ был успешно оформлен",
+		"payment_error": "Ошибка при проведении платежа",
+		"paypal_error": "Ошибка при проведении платежа PayPal",
+		"tax": "НДС",
+		"total_with_tax": "Итого с НДС"
+	},
+	"buttons": {
+		"ok": "OK"
+	},
+	"news": {
+		"title": "Новости"
+	},
+	"loading": "Приложение запускается, пожалуйста подождите",
+	"credit_card": {
+		"number": "Номер карты",
+		"exp_month": "Срок действия (мес)",
+		"exp_year": "Срок действия (год)",
+		"cvc": "CVC",
+		"pay": "Оплатить картой",
+		"cancel": "Отмена"
+	},
+	"catalog": {
+		"title": "Меню"
+	},
+	"cart": {
+		"title": "Моя корзина",
+		"empty": "Ваша корзина пуста",
+		"total": "Итого",
+		"order": "Заказать"
+	},
+	"map": {
+		"cancel": "Отмена",
+		"select": "Выбрать адрес",
+		"no_service": "Адрес не входит ни в одну зону доставки"
+	}
+}

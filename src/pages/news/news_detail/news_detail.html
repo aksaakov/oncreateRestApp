@@ -1,0 +1,23 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{ item.title }}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content class="home">
+	<div class="default-list">
+		<div class="list-item -article">
+			<div class="img-wrapper">
+				<img [src]="item.image_url" *ngIf="item.image_url">
+			</div>
+			<div class="item-text-wrapper">
+				<div padding>
+					<h2>{{ item.title }}</h2>
+					<div class="date">{{ stringAsDate(item.created_at) | date: date_format }}</div>
+					<br>
+					<div>{{ item.announce }}</div>
+					<div [innerHTML]="getNewsContent()"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-content>

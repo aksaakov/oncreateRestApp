@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'order.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form *ngIf="formReady" [formGroup]="orderForm" (ngSubmit)="placeOrder(orderForm.value)" novalidate>
+    <ion-item>
+      <ion-label fixed>{{ 'order.name' | translate }}</ion-label>
+      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text"
+                 [formControl]="orderForm.controls.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>{{ 'order.phone' | translate }}</ion-label>
+      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text"
+                 [formControl]="orderForm.controls.phone"></ion-input>
+    </ion-item>
+    <button type="button" ion-item detail-none (click)="showAddressWindow()">
+      <ion-label fixed>{{ 'order.address' | translate }}</ion-label>
+      <ion-input disabled placeholder="{{ 'order.click_to_write' | translate }}" type="text"
+                 [formControl]="orderForm.controls.address"></ion-input>
+    </button>
+    <ion-item>
+      <ion-label fixed>{{ 'order.promo_code' | translate }}</ion-label>
+      <ion-input placeholder="{{ 'order.optional' | translate }}" type="text"
+                 [formControl]="orderForm.controls.promo_code"></ion-input>
+      <button ion-button item-right type="button" (click)="validatePromo()">{{ 'order.check_promo' | translate }}
+      </button>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>{{ 'order.comment' | translate }}</ion-label>
+      <ion-textarea [formControl]="orderForm.controls.comment"
+                    placeholder="{{ 'order.optional' | translate }}"></ion-textarea>
+    </ion-item>
+    <ion-list radio-group [formControl]="orderForm.controls.payment_method">
+      <ion-item>
+        <ion-label>{{ 'order.cash_on_delivery' | translate }}</ion-label>
+        <ion-radio name="payment_method" value="cash"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ 'order.stripe' | translate }}</ion-label>
+        <ion-radio name="payment_method" value="stripe"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ 'order.paypal' | translate }}</ion-label>
+        <ion-radio name="payment_method" value="paypal"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="userData.loyalty_reward > 0">
+      <ion-item>
+        <ion-label stacked>{{ 'order.use_reward' | translate:{amount: userData.loyalty_reward | ecurrency} }}</ion-label>
+        <ion-input [formControl]="orderForm.controls.loyalty" type="number" max="userData.loyalty_reward"></ion-input>
+        <button ion-button item-right type="button" (click)="useReward()">{{ 'order.use' | translate }}</button>
+      </ion-item>
+    </ion-list>
+    <div class="cart-total -nob">
+      <div>{{ 'order.price' | translate }} {{ cTotalPrice | ecurrency }}</div>
+      <div>{{ 'order.delivery_price' | translate }} {{ deliveryPrice | ecurrency }}</div>
+      <div>{{ 'order.total' | translate }} {{ cTotalPrice + deliveryPrice | ecurrency }}</div>
+      <div *ngIf="cLoyaltyUsed > 0">{{ 'order.loyalty_used' | translate:{amount: cLoyaltyUsed | ecurrency} }}</div>
+      <div *ngIf="discountPrice">{{ 'order.coupon_discount' | translate }} {{ cFullPrice - discountPrice | ecurrency
+        }}</div>
+      <div *ngIf="discountPrice > 0 || cLoyaltyUsed > 0">Total with discount {{ discountPrice - cLoyaltyUsed + deliveryPrice | ecurrency }}</div>
+      <div *ngIf="cTaxPrice > 0">
+        <div>{{ 'order.tax' | translate }} {{ cTaxPrice | ecurrency }}</div>
+        <div>{{ 'order.total_with_tax' | translate }} {{ cPriceWithTax | ecurrency }}</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!orderForm.valid" ion-button block class="place-order-button">{{
+      'order.place_order' | translate }}
+    </button>
+  </form>
+</ion-content>

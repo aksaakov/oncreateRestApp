@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Loyalty program</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="loyalty-header">
+    <ion-item text-wrap>
+      <h1 class="text-center">{{ 'loyalty.heading' | translate }}</h1>
+    </ion-item>
+  </ion-list>
+  <div class="loyalty-progress-holder">
+    <div class="text">
+      <div class="available" *ngIf="userData.loyalty_reward > 0">
+        {{ userData.loyalty_reward | ecurrency }} <small>available</small>
+      </div>
+      <span class="points">{{ userData.loyalty_points }}/{{ settings.loyalty_points_for_reward }}</span>
+      <div class="comment">Before the next reward</div>
+    </div>
+    <round-progress
+      [current]="userData.loyalty_points"
+      [max]="settings.loyalty_points_for_reward"
+      [color]="'#ff3f00'"
+      [background]="'#b4b4b4'"
+      [stroke]="40"
+      [rounded]="true"
+      [clockwise]="true"
+      [responsive]="true"
+      [duration]="800"
+      [animation]="'easeInOutQuart'"
+      [animationDelay]="0"></round-progress>
+  </div>
+  <ion-card>
+    <ion-card-content class="loyalty-text">
+      <div [innerHTML]="'loyalty.description' | translate:{loyalty_points_per_amount: settings.loyalty_points_per_amount | ecurrency, loyalty_points_per_order: settings.loyalty_points_per_order, loyalty_points_for_reward: settings.loyalty_points_for_reward, loyalty_reward_amount: settings.loyalty_reward_amount | ecurrency}"></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
