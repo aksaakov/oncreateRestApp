@@ -25,7 +25,7 @@ export class APIService {
               private storage: Storage
   ) {
     // this.rootUrl = 'http://localhost:8000/api/';
-    this.rootUrl = 'http://delivery.giraffy.tech/api/';
+    this.rootUrl = 'http://petersalaam.com/api/';
     // this.rootUrl = 'http://foodypoint.giraffy.tech/api/';
     // this.rootUrl = 'http://10.0.3.2:8000/api/';
     // this.rootUrl = 'http://192.168.8.100:8000/api/';
