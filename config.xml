@@ -2,7 +2,7 @@
 <widget id="com.devfanatic.ecommerce" version="1.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Hot and Grill delivery services</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="creminds@gmail.com" href="http://devfanatic.com/">Ivan Larionov</author>
+    <author email="hello@oncreate.studio" href="http://devfanatic.com/">onCreate Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -98,5 +98,6 @@
     <plugin name="onesignal-cordova-plugin" spec="2.1.0" />
     <plugin name="com.paypal.cordova.mobilesdk" spec="^3.5.0" />
     <plugin name="cordova-custom-config" spec="^5.0.2" />
-    <engine name="android" spec="6.4.0" />
+    <engine name="android" spec="^7.1.1" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

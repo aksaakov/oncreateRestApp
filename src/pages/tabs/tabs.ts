@@ -25,7 +25,7 @@ export class TabsPage {
         private apiService: APIService
     ) {
         this.count = cart.getCartCount();
-        if (!this.apiService.getSettings().multiple_restaurants) {
+        if (this.apiService.getSettings().multiple_restaurants == 1) {
             this.tab1Root = 'RestaurantsPage';
         }
 
