@@ -11,6 +11,81 @@
 </ion-header>
 
 <ion-content>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      color:darkgray;
+    }
+  </style>
+  <ion-card>
+    <ion-card-header>
+      <img src="https://zafranindiansouthend.co.uk/skin/frontend/rwd/oog/images/newdesignlogo.png" alt="{{ 'welcome.app_name' | translate }}" />
+    </ion-card-header>
+
+    <ion-card-content>
+      <!--<h2>A</h2>-->
+      <div padding>
+        <ion-segment [(ngModel)]="restaurant">
+          <ion-segment-button value="about">
+            About
+          </ion-segment-button>
+          <ion-segment-button value="hours">
+            Opening Hours
+          </ion-segment-button>
+          <ion-segment-button value="contact">
+            Contact
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div [ngSwitch]="restaurant">
+        <ion-list *ngSwitchCase="'about'">
+          <ion-item>
+            <table>
+              <tr><td><p style="white-space: normal;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></td></tr>
+            </table>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'hours'">
+          <ion-item>
+            <table>
+              <tr><td>Monday</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td>Tuesday</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td>Wednesday</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td>Thursday</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td>Friday</td><td>Closed</td></tr>
+              <tr><td>Saturday</td><td>Closed</td></tr>
+              <tr><td>Sunday</td><td>10:00AM - 8:00PM</td></tr>
+            </table>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'contact'">
+          <ion-item>
+            <table>
+              <tr><td>Address</td><td>54 Cannon St Rd, <br />Whitechapel, <br />London E1 0BH</td></tr>
+              <tr><td>Phone</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td>Email</td><td>10:00AM - 8:00PM</td></tr>
+              <tr><td colspan="2"></td></tr>
+              <tr><td>Facebook</td><td>@HotnGrill</td></tr>
+              <tr><td>Twitter</td><td>@HotnGrill</td></tr>
+              <tr><td>Instagram</td><td>@HotnGrill</td></tr>
+            </table>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
   <div *ngIf="layout == 0">
     <div *ngFor="let category of categories; let i = index;" (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
       <div class="title">{{ category.name }}</div>
@@ -27,4 +102,5 @@
       </ion-row>
     </ion-grid>
   </div>
+  </ion-card>
 </ion-content>

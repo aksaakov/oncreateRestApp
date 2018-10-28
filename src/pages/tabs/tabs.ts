@@ -13,8 +13,8 @@ import {LoyaltyPage} from "../personal/loyalty/loyalty";
 export class TabsPage {
     // this tells the tabs component which Pages
     // should be each tab's root Page
-    tab0Root: any = 'NewsFeedPage';
-    tab1Root: any = 'CategoriesPage';
+    tab0Root: any = 'CategoriesPage';
+    tab1Root: any = 'NewsFeedPage';
     tab2Root: any = 'CartPage';
     tab3Root: any = 'OrdersHistoryPage';
     tab4Root: any = 'LoyaltyPage';
@@ -26,7 +26,7 @@ export class TabsPage {
     ) {
         this.count = cart.getCartCount();
         if (this.apiService.getSettings().multiple_restaurants == 1) {
-            this.tab1Root = 'RestaurantsPage';
+            this.tab0Root = 'RestaurantsPage';
         }
 
     	this.cart.itemsCount$.subscribe((v) => {

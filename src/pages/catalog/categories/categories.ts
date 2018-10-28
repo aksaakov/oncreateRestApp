@@ -9,6 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
     templateUrl: 'categories.html'
 })
+
 export class CategoriesPage {
     public categories;
     public sectionId;
@@ -17,10 +18,12 @@ export class CategoriesPage {
     public loggedIn = false;
     public layout = 0;
 
+  restaurant: string = "about";
+
     constructor(
         private nav: NavController,
         private apiService: APIService,
-        private params: NavParams
+        private params: NavParams,
     ) {
       this.layout = this.apiService.getSettings().categories_layout;
         this.categories = this.getCategories();
@@ -54,5 +57,7 @@ export class CategoriesPage {
             this.nav.push('ProductsPage', { category: category });
         }
     }
+
+
 
 }

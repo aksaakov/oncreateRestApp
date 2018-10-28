@@ -8,7 +8,7 @@
 	},
 	"tabs": {
 		"news": "News",
-		"menu": "Menu",
+		"menu": "Home",
 		"cart": "My Cart",
 		"orders_list": "History",
     "loyalty": "Loyalty program"
@@ -74,7 +74,7 @@
 		"cancel": "Cancel"
 	},
 	"catalog": {
-		"title": "Catalog"
+		"title": "Home"
 	},
 	"cart": {
 		"title": "My Cart",

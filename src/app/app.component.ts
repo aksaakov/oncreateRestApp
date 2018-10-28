@@ -77,7 +77,9 @@ export class MyApp {
         this.nav.push('ProfilePage');
     }
 
-    openHistory() {}
+    openHistory() {
+        this.nav.push('ProfilePage');
+    }
 
     logout() {
         this.util.showLoader();
