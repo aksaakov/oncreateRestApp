@@ -11,7 +11,8 @@
 		"menu": "Home",
 		"cart": "My Cart",
 		"orders_list": "History",
-    "loyalty": "Loyalty program"
+    "loyalty": "Loyalty program",
+    "my_account" : "My Account"
 	},
   "loyalty": {
     "heading": "Order From Hot & Grill And Get Rewarded",

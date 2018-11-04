@@ -1,32 +1,22 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle *ngIf="loggedIn">
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>
-            <span *ngIf="rootCategory">{{ rootCategory.name }}</span>
-            <span *ngIf="!rootCategory">{{ 'catalog.title' | translate }}</span>
-        </ion-title>
-    </ion-navbar>
+    <!--<ion-navbar>-->
+        <!--<button ion-button menuToggle *ngIf="loggedIn">-->
+            <!--<ion-icon name="menu"></ion-icon>-->
+        <!--</button>-->
+        <!--<ion-title>-->
+            <!--<span *ngIf="rootCategory">{{ rootCategory.name }}</span>-->
+            <!--<span *ngIf="!rootCategory">{{ 'catalog.title' | translate }}</span>-->
+        <!--</ion-title>-->
+    <!--</ion-navbar>-->
 </ion-header>
 
 <ion-content>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
+  <div class="main-header">
+  </div>
 
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      color:darkgray;
-    }
-  </style>
   <ion-card>
     <ion-card-header>
-      <img src="https://zafranindiansouthend.co.uk/skin/frontend/rwd/oog/images/newdesignlogo.png" alt="{{ 'welcome.app_name' | translate }}" />
+      <!--<img src="https://zafranindiansouthend.co.uk/skin/frontend/rwd/oog/images/newdesignlogo.png" alt="{{ 'welcome.app_name' | translate }}" />-->
     </ion-card-header>
 
     <ion-card-content>
@@ -48,8 +38,18 @@
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
           <ion-item>
+            Welcome
+            <button ion-button outline item-end (click)="gotoNews()">
+              Latest News
+            </button>
+          </ion-item>
+          <ion-item>
             <table>
-              <tr><td><p style="white-space: normal;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></td></tr>
+              <tr><td>
+                <input type="checkbox" class="read-more-state" id="post-1" />
+                <p class="read-more-wrap" style="white-space: normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</span></p>
+                <label for="post-1" class="read-more-trigger"></label>
+              </td></tr>
             </table>
           </ion-item>
         </ion-list>

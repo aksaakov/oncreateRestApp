@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { APIService } from '../../../services/api_service';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NewsFeedPage } from '../../news/news_feed/news_feed';
 
 /**
  * Categories list page component
@@ -20,10 +21,10 @@ export class CategoriesPage {
 
   restaurant: string = "about";
 
-    constructor(
-        private nav: NavController,
+    constructor (
+        public nav: NavController,
         private apiService: APIService,
-        private params: NavParams,
+        public params: NavParams,
     ) {
       this.layout = this.apiService.getSettings().categories_layout;
         this.categories = this.getCategories();
@@ -31,6 +32,10 @@ export class CategoriesPage {
         this.restaurantId = params.get('restaurant_id');
         this.rootCategory = params.get('root');
         this.loggedIn = this.apiService.isLoggedIn();
+    }
+
+    gotoNews() {
+      this.nav.push(NewsFeedPage);
     }
 
     ionViewWillEnter() {

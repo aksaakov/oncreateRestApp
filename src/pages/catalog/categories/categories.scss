@@ -2,12 +2,69 @@
   padding-top: 120px;
   background-size: cover !important;
   background-position: center center;
+  margin: 10px;
   .title {
     text-align: center;
-    color: #fff;
-    background: rgba(155, 155, 155, 0.93);
+    color: #666666;
+    background: rgba(230, 230, 230, 0.93);
     font-size: 24px;
     padding: 10px 15px;
     font-weight: normal;
   }
+}
+p {
+  color: darkgray;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color:darkgray;
+}
+.main-header {
+  background:url(https://zafranindiansouthend.co.uk/skin/frontend/rwd/oog/images/newdesignlogo.png);
+  text-align: center;
+  color:white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 300px;
+  background-position: center top;
+}
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-target {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: .25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+  content: 'Show more';
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Show less';
+}
+
+.read-more-trigger {
+  cursor: pointer;
+  display: inline-block;
+  color: #666;
+  font-size: .9em;
+  line-height: 2;
 }

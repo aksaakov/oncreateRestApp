@@ -9,6 +9,7 @@ import {MyApp} from './app.component';
 import {TabsPage} from '../pages/tabs/tabs';
 import {Loading} from '../pages/loading/loading';
 import {Welcome} from '../pages/welcome/welcome';
+import {NewsFeedPage} from "../pages/news/news_feed/news_feed";
 
 import {IonicStorageModule} from '@ionic/storage';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -60,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
     TabsPage,
     Welcome,
-    Loading
+    Loading,
+    NewsFeedPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -86,6 +88,7 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     Welcome,
     Loading,
+    NewsFeedPage,
   ],
   providers: [
     StatusBar,

@@ -28,7 +28,7 @@ export class NewsFeedPage {
     }
 
     constructor(
-        private nav: NavController,
+        public nav: NavController,
         private apiService: APIService
     ) {
         this.populateList();
