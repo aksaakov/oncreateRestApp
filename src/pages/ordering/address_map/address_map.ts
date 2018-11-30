@@ -74,7 +74,7 @@ export class AddressMap {
     
     loadMap() {
         this.util.showLoader();
-        let latLng = new google.maps.LatLng(55.7469492, 37.62548345);
+        let latLng = new google.maps.LatLng(51.5014, 0.1419);
         let mapOptions = {
             center: latLng,
             zoom: 15,

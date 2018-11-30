@@ -12,13 +12,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 export class CategoriesPage {
     public categories;
+    public homepage;
     public sectionId;
     public rootCategory;
     public restaurantId;
     public loggedIn = false;
     public layout = 0;
 
-  restaurant: string = "about";
+    restaurant: string = "about";
+    showtext = false;
+
 
     constructor(
         private nav: NavController,
@@ -27,6 +30,7 @@ export class CategoriesPage {
     ) {
       this.layout = this.apiService.getSettings().categories_layout;
         this.categories = this.getCategories();
+        this.homepage = this.getHomepageDetails();
         this.sectionId = params.get('id');
         this.restaurantId = params.get('restaurant_id');
         this.rootCategory = params.get('root');
@@ -49,6 +53,15 @@ export class CategoriesPage {
         return result;
     }
 
+    getHomepageDetails() {
+        let result = [];
+        this.apiService.getHomepageDetails().then((response) => {
+            this.homepage = response.json();
+            result.push(response);
+        });
+        return result;
+    }
+
     showDetails(category) {
         if (category.has_children > 0) {
             this.nav.push('CategoriesPage', { id: category.id, root: category });
@@ -57,7 +70,20 @@ export class CategoriesPage {
             this.nav.push('ProductsPage', { category: category });
         }
     }
-
-
-
+    toggleTextBtn(){
+        switch(this.showtext) { 
+            case true: { 
+                this.showtext = false;
+                break; 
+             } 
+             case false: { 
+                this.showtext = true; 
+                break; 
+             } 
+             default: { 
+                this.showtext = false;
+                break; 
+             } 
+        }
+    }
 }

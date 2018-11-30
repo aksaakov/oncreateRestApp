@@ -24,11 +24,13 @@
       color:darkgray;
     }
   </style>
+
   <ion-card>
     <ion-card-header>
-      <img src="https://zafranindiansouthend.co.uk/skin/frontend/rwd/oog/images/newdesignlogo.png" alt="{{ 'welcome.app_name' | translate }}" />
+      <div *ngFor="let storefront of homepage; let i = index;"  class="homeimage">
+      <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" />
+      </div>
     </ion-card-header>
-
     <ion-card-content>
       <!--<h2>A</h2>-->
       <div padding>
@@ -47,37 +49,40 @@
 
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
-          <ion-item>
-            <table>
-              <tr><td><p style="white-space: normal;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></td></tr>
-            </table>
+          <div *ngFor="let storefront of homepage; let i = index;">
+          <div class="restaurant-title">{{storefront.Title}}</div>
+          <ion-item>   
+            <div>
+                <p  *ngIf="!showtext" style="white-space: normal; text-align:justify;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
+                <p  *ngIf="showtext" style="white-space: normal; text-align:justify;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
+              </div> 
           </ion-item>
+          </div>
         </ion-list>
 
         <ion-list *ngSwitchCase="'hours'">
           <ion-item>
-            <table>
-              <tr><td>Monday</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td>Tuesday</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td>Wednesday</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td>Thursday</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td>Friday</td><td>Closed</td></tr>
-              <tr><td>Saturday</td><td>Closed</td></tr>
-              <tr><td>Sunday</td><td>10:00AM - 8:00PM</td></tr>
+            <table *ngFor="let working_hours of homepage; let i = index;">
+              <tr><td>Monday</td><td>{{working_hours.mon_open + " - " + working_hours.mon_close}}</td></tr>
+              <tr><td>Tuesday</td><td>{{working_hours.tue_open + " - " +  working_hours.tue_close}}</td></tr>
+              <tr><td>Wednesday</td><td>{{working_hours.wed_open + " - " + working_hours.wed_close}}</td></tr>
+              <tr><td>Thursday</td><td>{{working_hours.thu_open + " - " +  working_hours.thu_close}}</td></tr>
+              <tr><td>Friday</td><td>{{working_hours.fri_open + " - " +  working_hours.fri_close}}</td></tr>
+              <tr><td>Saturday</td><td>{{working_hours.sat_open + " - " +  working_hours.sat_close}}</td></tr>
+              <tr><td>Sunday</td><td>{{working_hours.sun_open + " - " +  working_hours.sun_close}}</td></tr>
             </table>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'contact'">
           <ion-item>
-            <table>
-              <tr><td>Address</td><td>54 Cannon St Rd, <br />Whitechapel, <br />London E1 0BH</td></tr>
-              <tr><td>Phone</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td>Email</td><td>10:00AM - 8:00PM</td></tr>
-              <tr><td colspan="2"></td></tr>
-              <tr><td>Facebook</td><td>@HotnGrill</td></tr>
-              <tr><td>Twitter</td><td>@HotnGrill</td></tr>
-              <tr><td>Instagram</td><td>@HotnGrill</td></tr>
+            <table *ngFor="let contacts of homepage; let i = index;">
+              <tr *ngIf="contacts.address!=null"><td>Address</td><td>{{contacts.address}}</td></tr>
+              <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
+              <tr *ngIf="contacts.email!=null"><td>Email</td><td>needs DB field in backoffice</td></tr>
+              <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td>{{contacts.facebook}}</td></tr>
+              <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td>{{contacts.twitter}}</td></tr>
+              <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td>{{contacts.instagram}}</td></tr>
             </table>
           </ion-item>
         </ion-list>
@@ -104,3 +109,4 @@
   </div>
   </ion-card>
 </ion-content>
+
