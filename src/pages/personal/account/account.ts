@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { APIService } from "../../../services/api_service";
 import { UtilService } from "../../../services/util_service";
+import { Storage } from '@ionic/storage';
+
 
 /**
 * Component for profile editing
@@ -12,18 +14,22 @@ import { UtilService } from "../../../services/util_service";
 	selector: 'account',
 	templateUrl: 'account.html',
 })
+
 export class AccountPage {
 	public accountForm: FormGroup;
 	public active: boolean;
 	public cities = [];
 	public showCities = false;
+	
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private builder: FormBuilder,
 		private apiService: APIService,
-		private util: UtilService
+		private util: UtilService,
+		private nav: NavController,
+		private storage: Storage
 	) {
 		this.active = false;
 	}
@@ -65,5 +71,31 @@ export class AccountPage {
 			this.util.hideLoader();
 		});
 	}
+<<<<<<< HEAD
 	
+=======
+
+	// openLogin() {
+    //     this.nav.push('LoginPage');
+	// }
+	
+	openProfile() {
+        this.nav.push('ProfilePage');
+    }
+
+	openHistory() {
+        this.nav.push('OrdersHistoryPage');
+	}
+	
+	openLoyaltyPoints() {
+        this.nav.push('LoyaltyPage');
+	}
+	
+	logout() {
+        this.util.showLoader();
+        this.storage.clear().then(() => {
+            window['location'].reload();
+        });
+    }
+>>>>>>> fac11251464bf383a662c2108e2c39194b76fc8b
 }
