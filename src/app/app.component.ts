@@ -76,11 +76,7 @@ export class MyApp {
     openProfile() {
         this.nav.push('ProfilePage');
     }
-
-    openHistory() {
-        this.nav.push('ProfilePage');
-    }
-
+    
     logout() {
         this.util.showLoader();
         this.storage.clear().then(() => {

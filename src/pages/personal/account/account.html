@@ -10,25 +10,33 @@
 <ion-content>
 	<ion-card>
 		<ion-card-content>
-			<h2>Order History</h2>
+				<button menuClose ion-item (click)="openHistory()" class="-b5">
+						Order History
+				</button>
 		</ion-card-content>
 	</ion-card>
 
 	<ion-card>
 		<ion-card-content>
-			<h2>Profile</h2>
+			<button menuClose ion-item (click)="openProfile()" class="-b5">
+				Profile
+			</button>
 		</ion-card-content>
 	</ion-card>
 	
 	<ion-card>
 		<ion-card-content>
-			<h2>Loyalty Points</h2>
+			<button menuClose ion-item (click)="openLoyaltyPoints()" class="-b5">
+				Loyalty Points
+			</button>
 		</ion-card-content>
 	</ion-card>
 	
 	<ion-card>
 		<ion-card-content>
-			<h2>Log out</h2>
+			<button menuClose ion-item (click)="logout()" class="-b5">
+				Log out
+			</button>
 		</ion-card-content>
 	</ion-card>
 </ion-content>
