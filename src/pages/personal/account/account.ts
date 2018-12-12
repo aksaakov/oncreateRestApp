@@ -71,9 +71,6 @@ export class AccountPage {
 			this.util.hideLoader();
 		});
 	}
-<<<<<<< HEAD
-	
-=======
 
 	// openLogin() {
     //     this.nav.push('LoginPage');
@@ -97,5 +94,4 @@ export class AccountPage {
             window['location'].reload();
         });
     }
->>>>>>> fac11251464bf383a662c2108e2c39194b76fc8b
 }
