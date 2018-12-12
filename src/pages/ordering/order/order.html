@@ -59,14 +59,14 @@
     <div class="cart-total -nob">
       <div>{{ 'order.price' | translate }} {{ cTotalPrice | ecurrency }}</div>
       <div>{{ 'order.delivery_price' | translate }} {{ deliveryPrice | ecurrency }}</div>
-      <div>{{ 'order.total' | translate }} {{ cTotalPrice + deliveryPrice | ecurrency }}</div>
+      <div>{{ 'order.total' | translate }} {{ +cTotalPrice + +deliveryPrice | ecurrency }}</div>
       <div *ngIf="cLoyaltyUsed > 0">{{ 'order.loyalty_used' | translate:{amount: cLoyaltyUsed | ecurrency} }}</div>
-      <div *ngIf="discountPrice">{{ 'order.coupon_discount' | translate }} {{ cFullPrice - discountPrice | ecurrency
+      <div *ngIf="discountPrice">{{ 'order.coupon_discount' | translate }} {{ +cFullPrice - +discountPrice | ecurrency
         }}</div>
-      <div *ngIf="discountPrice > 0 || cLoyaltyUsed > 0">Total with discount {{ discountPrice - cLoyaltyUsed + deliveryPrice | ecurrency }}</div>
+      <div *ngIf="discountPrice > 0 || cLoyaltyUsed > 0">Total with discount {{ +discountPrice - +cLoyaltyUsed + +deliveryPrice | ecurrency }}</div>
       <div *ngIf="cTaxPrice > 0">
         <div>{{ 'order.tax' | translate }} {{ cTaxPrice | ecurrency }}</div>
-        <div>{{ 'order.total_with_tax' | translate }} {{ cPriceWithTax | ecurrency }}</div>
+        <div>{{ 'order.total_with_tax' | translate }} {{ +cTaxPrice + +discountPrice - +cLoyaltyUsed + +deliveryPrice | ecurrency }}</div>
       </div>
     </div>
     <button type="submit" [disabled]="!orderForm.valid" ion-button block class="place-order-button">{{

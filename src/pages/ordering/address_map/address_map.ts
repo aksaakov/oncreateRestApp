@@ -89,9 +89,9 @@ export class AddressMap {
         delivery_areas.forEach((area) => {
             let poly = new google.maps.Polygon({
                 path: JSON.parse(area.coords),
-                strokeColor: '#00FF00',
+                strokeColor: '#A9F5BC',
                 strokeOpacity: 0.7,
-                fillColor: '#00FF00',
+                fillColor: '#A9F5BC',
                 fillOpacity: 0.4,
                 strokeWeight: 4
             });
@@ -167,11 +167,11 @@ export class AddressMap {
         }
         let me = this;
         this.service.getPlacePredictions({
-            input: this.autocomplete.query
+            input: this.autocomplete.query,
             // uncomment to apply restrictions
-            // componentRestrictions: {
-            //     country: 'TH'
-            // }
+            componentRestrictions: {
+                country: 'uk'
+            }
         }, function (predictions, status) {
             me.autocompleteItems = [];
             me.zone.run(function () {

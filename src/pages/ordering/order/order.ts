@@ -126,8 +126,10 @@ export class OrderPage {
   realPlaceOrder() {
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.apiService.createOrder(this.orderData).then((response) => {
-      let data = response.json(),
+       try
+      {
+        this.apiService.createOrder(this.orderData).then((response) => {
+          let data = response.json(),
         alert = null,
         title = this.translate.instant('order.error_title'),
         message = '';
@@ -158,6 +160,11 @@ export class OrderPage {
       this.util.alert(this.translate.instant('order.general_error'), '');
       loading.dismiss();
     });
+      } 
+      catch(e)
+      {
+        console.log(e);
+      }
   }
 
   /**

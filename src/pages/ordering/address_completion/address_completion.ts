@@ -36,6 +36,8 @@ export class AddressCompletion {
             return;
         }
         let me = this;
+        this.service.setComponentRestrictions(
+            {'country': ['uk']});
         this.service.getPlacePredictions({
             input: this.autocomplete.query//,
             // componentRestrictions: {
