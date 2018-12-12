@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <!-- <ion-navbar>
         <button ion-button menuToggle *ngIf="loggedIn">
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -7,7 +7,7 @@
             <span *ngIf="rootCategory">{{ rootCategory.name }}</span>
             <span *ngIf="!rootCategory">{{ 'catalog.title' | translate }}</span>
         </ion-title>
-    </ion-navbar>
+    </ion-navbar> -->
 </ion-header>
 
 <ion-content>
@@ -24,22 +24,21 @@
       color:darkgray;
     }
   </style>
-
-  <ion-card>
-    <ion-card-header>
-      <div *ngFor="let storefront of homepage; let i = index;"  class="homeimage">
+  
+  <div *ngFor="let storefront of homepage; let i = index;" >
       <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" />
-      </div>
-    </ion-card-header>
+      <!-- <div style="background: url('{{storefront.image_url}}');"></div> -->
+    </div>
+  <ion-card>
     <ion-card-content>
       <!--<h2>A</h2>-->
-      <div padding>
+      <div style="background: white;">
         <ion-segment [(ngModel)]="restaurant">
           <ion-segment-button value="about">
-            About
+            <!-- <ion-tab [root]="tab0Root"  ="restaurant"></ion-tab> -->About
           </ion-segment-button>
           <ion-segment-button value="hours">
-            Opening Hours
+            Hours
           </ion-segment-button>
           <ion-segment-button value="contact">
             Contact
@@ -50,11 +49,11 @@
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
           <div *ngFor="let storefront of homepage; let i = index;">
-          <div class="restaurant-title">{{storefront.Title}}</div>
+          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px;">{{storefront.Title}}</div>
           <ion-item>   
             <div>
-                <p  *ngIf="!showtext" style="white-space: normal; text-align:justify;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
-                <p  *ngIf="showtext" style="white-space: normal; text-align:justify;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
+                <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
+                <p  *ngIf="showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
               </div> 
           </ion-item>
           </div>
@@ -63,13 +62,41 @@
         <ion-list *ngSwitchCase="'hours'">
           <ion-item>
             <table *ngFor="let working_hours of homepage; let i = index;">
-              <tr><td>Monday</td><td>{{working_hours.mon_open + " - " + working_hours.mon_close}}</td></tr>
-              <tr><td>Tuesday</td><td>{{working_hours.tue_open + " - " +  working_hours.tue_close}}</td></tr>
-              <tr><td>Wednesday</td><td>{{working_hours.wed_open + " - " + working_hours.wed_close}}</td></tr>
-              <tr><td>Thursday</td><td>{{working_hours.thu_open + " - " +  working_hours.thu_close}}</td></tr>
-              <tr><td>Friday</td><td>{{working_hours.fri_open + " - " +  working_hours.fri_close}}</td></tr>
-              <tr><td>Saturday</td><td>{{working_hours.sat_open + " - " +  working_hours.sat_close}}</td></tr>
-              <tr><td>Sunday</td><td>{{working_hours.sun_open + " - " +  working_hours.sun_close}}</td></tr>
+              <tr>
+                <td>Monday</td>
+                <td *ngIf="working_hours.mon_open!=null&&working_hours.mon_close!=null">{{working_hours.mon_open}} - {{working_hours.mon_close}}</td>
+                <td *ngIf="working_hours.mon_open==null&&working_hours.mon_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Tuesday</td>
+                <td *ngIf="working_hours.tue_open!=null&&working_hours.tue_close!=null">{{working_hours.tue_open}} -  {{working_hours.tue_close}}</td>
+                <td *ngIf="working_hours.tue_open==null&&working_hours.tue_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Wednesday</td>
+                <td *ngIf="working_hours.wed_open!=null&&working_hours.wed_close!=null">{{working_hours.wed_open}} - {{working_hours.wed_close}}</td>
+                <td *ngIf="working_hours.wed_open==null&&working_hours.wed_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Thursday</td>
+                <td *ngIf="working_hours.thu_open!=null&&working_hours.thu_close!=null">{{working_hours.thu_open}} - {{working_hours.thu_close}}</td>
+                <td *ngIf="working_hours.thu_open!==null&&working_hours.thu_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Friday</td>
+                <td *ngIf="working_hours.fri_open!=null&&working_hours.fri_close!=null">{{working_hours.fri_open}} - {{working_hours.fri_close}}</td>
+                <td *ngIf="working_hours.fri_open==null&&working_hours.fri_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td *ngIf="working_hours.sat_open!=null&&working_hours.sat_close!=null">{{working_hours.sat_open}} - {{working_hours.sat_close}}</td>
+                <td *ngIf="working_hours.sat_open==null&&working_hours.sat_close==null">Closed</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td *ngIf="working_hours.sun_open!=null&&working_hours.sun_close!=null">{{working_hours.sun_open}} - {{working_hours.sun_close}}</td>
+                <td *ngIf="working_hours.sun_open==null&&working_hours.sun_close==null">Closed</td>
+              </tr>
             </table>
           </ion-item>
         </ion-list>
@@ -80,9 +107,9 @@
               <tr *ngIf="contacts.address!=null"><td>Address</td><td>{{contacts.address}}</td></tr>
               <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
               <tr *ngIf="contacts.email!=null"><td>Email</td><td>needs DB field in backoffice</td></tr>
-              <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td>{{contacts.facebook}}</td></tr>
-              <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td>{{contacts.twitter}}</td></tr>
-              <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td>{{contacts.instagram}}</td></tr>
+              <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td><a (click)="openNewTab('https://www.facebook.com/', contacts.facebook)"> @{{contacts.facebook}}</a></td></tr>
+              <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td><a (click)="openNewTab('https://www.twitter.com/', contacts.twitter)"> @{{contacts.twitter}}</a></td></tr>
+              <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td><a (click)="openNewTab('https://www.instagram.com/', contacts.instagram)"> @{{contacts.instagram}}</a></td></tr>
             </table>
           </ion-item>
         </ion-list>
