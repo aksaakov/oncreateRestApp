@@ -1,10 +1,15 @@
 <!-- <ion-split-pane> -->
-	<ion-menu [content]="myNav" persistent="true" type="overlay" [hidden]="!loggedIn">
+	<ion-menu [content]="myNav" persistent="true" type="overlay" [hidden]="loggedIn">
 		<ion-content>
 			<div>
 				<ion-list>
-					<button menuClose ion-item (click)="openProfile()" class="-b5">
-						{{ 'menu.profile' | translate }}
+					<button menuClose ion-item (click)="openLogin()" class="-b5">
+						{{ 'menu.login' | translate }}
+					</button>
+
+
+					<button menuClose ion-item (click)="openLogin()" class="-b5">
+						{{ 'menu.login' | translate }} => 
 					</button>
           <button menuClose ion-item (click)="openProfile()" class="-b5">
             {{ 'menu.profile' | translate }}

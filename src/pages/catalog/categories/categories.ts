@@ -86,4 +86,8 @@ export class CategoriesPage {
              } 
         }
     }
+
+    openNewTab(baseurl, link) {
+        window.open(baseurl + link, "_system");
+    }
 }

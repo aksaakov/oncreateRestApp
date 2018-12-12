@@ -11,7 +11,8 @@
 		"menu": "Home",
 		"cart": "My Cart",
 		"orders_list": "History",
-    "loyalty": "Loyalty program"
+		"account": "Account",
+    	"loyalty": "Loyalty program"
 	},
   "loyalty": {
     "heading": "Order From Hot & Grill And Get Rewarded",
@@ -100,7 +101,8 @@
 		"error": "General error has occurred during signup"
 	},
 	"menu": {
-		"profile": "Profile & Settings",
+		"profile": "Edit Profile",
+		"login": "Login",
 		"logout": "Logout"
 	},
 	"restaurants": {
@@ -108,6 +110,16 @@
 	},
 	"profile": {
 		"title": "My Profile",
+		"save": "Save",
+		"email": "Email",
+		"name": "Name",
+		"city": "City",
+		"phone": "Phone",
+		"password": "Password",
+		"password_confirmation": "Confirm password"
+	},
+	"account": {
+		"title": "My Account",
 		"save": "Save",
 		"email": "Email",
 		"name": "Name",

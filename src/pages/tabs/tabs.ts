@@ -16,7 +16,7 @@ export class TabsPage {
     tab0Root: any = 'CategoriesPage';
     tab1Root: any = 'NewsFeedPage';
     tab2Root: any = 'CartPage';
-    tab3Root: any = 'OrdersHistoryPage';
+    tab3Root: any = 'AccountPage';
     tab4Root: any = 'LoyaltyPage';
     count: number = 0;
 
