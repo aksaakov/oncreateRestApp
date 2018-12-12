@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { APIService } from '../../../services/api_service';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { APIService } from '../../../services/api_service';
 
 /**
  * Categories list page component
@@ -16,6 +16,7 @@ export class CategoriesPage {
     public sectionId;
     public rootCategory;
     public restaurantId;
+    public newsFeed;
     public loggedIn = false;
     public layout = 0;
 
@@ -26,7 +27,7 @@ export class CategoriesPage {
     constructor(
         private nav: NavController,
         private apiService: APIService,
-        private params: NavParams,
+        private params: NavParams
     ) {
       this.layout = this.apiService.getSettings().categories_layout;
         this.categories = this.getCategories();
@@ -85,6 +86,10 @@ export class CategoriesPage {
                 break; 
              } 
         }
+    }
+
+    openNewsFeed(){
+        this.nav.push('NewsFeedPage');
     }
 
     openNewTab(baseurl, link) {

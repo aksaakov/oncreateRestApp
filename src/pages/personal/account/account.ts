@@ -65,9 +65,5 @@ export class AccountPage {
 			this.util.hideLoader();
 		});
 	}
-
-	// openLogin() {
-    //     this.nav.push('LoginPage');
-    // }
-
+	
 }

@@ -35,13 +35,13 @@
       <div style="background: white;">
         <ion-segment [(ngModel)]="restaurant">
           <ion-segment-button value="about">
-            <!-- <ion-tab [root]="tab0Root"  ="restaurant"></ion-tab> -->About
+              <ion-icon name="restaurant"></ion-icon>
           </ion-segment-button>
           <ion-segment-button value="hours">
-            Hours
+              <ion-icon name="clock"></ion-icon>
           </ion-segment-button>
           <ion-segment-button value="contact">
-            Contact
+              <ion-icon name="call"></ion-icon>
           </ion-segment-button>
         </ion-segment>
       </div>
@@ -49,7 +49,8 @@
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
           <div *ngFor="let storefront of homepage; let i = index;">
-          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px;">{{storefront.Title}}</div>
+          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px; float: left;">{{storefront.Title}}</div>
+          <button ion-button outline style="margin:25px 0 15px; float: right;" (click)="openNewsFeed()"> Latest News</button>
           <ion-item>   
             <div>
                 <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
@@ -61,7 +62,7 @@
 
         <ion-list *ngSwitchCase="'hours'">
           <ion-item>
-            <table *ngFor="let working_hours of homepage; let i = index;">
+            <table *ngFor="let working_hours of homepage; let i = index;" style="padding:25px 0 15px;">
               <tr>
                 <td>Monday</td>
                 <td *ngIf="working_hours.mon_open!=null&&working_hours.mon_close!=null">{{working_hours.mon_open}} - {{working_hours.mon_close}}</td>
@@ -103,7 +104,7 @@
 
         <ion-list *ngSwitchCase="'contact'">
           <ion-item>
-            <table *ngFor="let contacts of homepage; let i = index;">
+            <table *ngFor="let contacts of homepage; let i = index;" style="padding:25px 0 15px;">
               <tr *ngIf="contacts.address!=null"><td>Address</td><td>{{contacts.address}}</td></tr>
               <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
               <tr *ngIf="contacts.email!=null"><td>Email</td><td>needs DB field in backoffice</td></tr>
@@ -117,23 +118,29 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <!-- <ion-card> -->
   <div *ngIf="layout == 0">
-    <div *ngFor="let category of categories; let i = index;" (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
-      <div class="title">{{ category.name }}</div>
-    </div>
+      <ion-card-content>
+        <div *ngFor="let category of categories; let i = index;" (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
+          <div class="title">{{ category.name }}</div>
+        </div>
+      </ion-card-content>
+    <br />
   </div>
   <div *ngIf="layout == 1">
     <ion-grid>
       <ion-row>
         <ion-col col-6 *ngFor="let category of categories; let i = index;">
-          <div (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
-            <div class="title">{{ category.name }}</div>
-          </div>
+            <ion-card-content>
+              <div (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}" >
+               <div class="title">{{ category.name }}</div>
+              </div>
+            </ion-card-content>
+          <br />
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  </ion-card>
+  <!-- </ion-card> -->
 </ion-content>
 
