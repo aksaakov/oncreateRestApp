@@ -50,7 +50,7 @@
         <ion-list *ngSwitchCase="'about'">
           <div *ngFor="let storefront of homepage; let i = index;">
           <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px; float: left;">{{storefront.Title}}</div>
-          <button ion-button outline style="margin:25px 0 15px; float: right;" (click)="openNewsFeed()"> Latest News</button>
+          <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
           <ion-item>   
             <div>
                 <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>

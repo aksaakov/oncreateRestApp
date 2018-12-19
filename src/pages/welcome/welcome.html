@@ -5,7 +5,7 @@
               <!--<span class="inner"></span>-->
             <!--</span>-->
             <span class="welcome-text">
-                {{ 'welcome.welcome' | translate }}<br/>{{ 'welcome.app_name' | translate }}
+                {{ 'welcome.welcome' | translate }}<br/>Restaurant X
             </span>
         </p>
     </div>
@@ -14,8 +14,6 @@
     </div>
     <div class="welcome-content" *ngIf="signup">
         <button ion-button block large class="start-button" (click)="goToSignup()">{{ 'welcome.signup' | translate }}</button>
-        <div class="text-center">
-            <a (click)="goToLogin()">{{ 'welcome.login' | translate }}</a>
-        </div>
+        <button ion-button block large class="start-button" (click)="goToLogin()">Log In</button>
     </div>
 </div>
