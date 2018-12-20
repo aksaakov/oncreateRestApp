@@ -68,5 +68,4 @@ export class SignupPage {
 	login() {
 		this.nav.setRoot('LoginPage');
 	}
-
 }
