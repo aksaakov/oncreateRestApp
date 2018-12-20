@@ -10,13 +10,13 @@
   <form *ngIf="formReady" [formGroup]="orderForm" (ngSubmit)="placeOrder(orderForm.value)" novalidate>
     <ion-item>
       <ion-label fixed>{{ 'order.name' | translate }}</ion-label>
-      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text"
-                 [formControl]="orderForm.controls.name"></ion-input>
+      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text" style="color:gray"
+                 [formControl]="orderForm.controls.name" readonly></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>{{ 'order.phone' | translate }}</ion-label>
-      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text"
-                 [formControl]="orderForm.controls.phone"></ion-input>
+      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text" style="color:gray"
+                 [formControl]="orderForm.controls.phone" readonly></ion-input>
     </ion-item>
     <button type="button" ion-item detail-none (click)="showAddressWindow()">
       <ion-label fixed>{{ 'order.address' | translate }}</ion-label>

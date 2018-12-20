@@ -25,6 +25,15 @@
 				<ion-input placeholder="{{ 'signup.password' | translate }}" type="password" [formControl]="loginForm.controls.password">
 				</ion-input>
 			</ion-item>
+			<ion-item>
+					<ion-input id="pwd2" placeholder="{{ 'profile.password_confirmation' | translate }}" type="password" [formControl]="loginForm.controls.password_confirmation">
+					</ion-input>
+				</ion-item>
+			<p *ngIf="loginForm.controls['name'].errors && loginForm.controls['name'].dirty" class="input-error" padding>Name is not valid.</p>
+			<p *ngIf="loginForm.controls['phone'].errors && loginForm.controls['phone'].dirty" class="input-error" padding>Phone number is not valid.</p>
+			<p *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" class="input-error" padding>Email is not valid.</p>
+			<p *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty" class="input-error" padding>Password must be 6 to 20 characters long.</p>
+			<p *ngIf="loginForm.controls['password_confirmation'].errors && loginForm.controls['password_confirmation'].dirty" class="input-error" padding>Passwords do not match.</p>
 			<button ion-button type="submit" block color="primary" [disabled]="loginForm.invalid">
 				{{ 'signup.button' | translate }}
 			</button>

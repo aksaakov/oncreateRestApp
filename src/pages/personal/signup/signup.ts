@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { APIService } from '../../../services/api_service';
 import { UtilService } from '../../../services/util_service';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from "@angular/forms";
 import { TabsPage } from "../../tabs/tabs";
 import { PushService } from '../../../services/push_service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { sequenceEqual } from 'rxjs/operator/sequenceEqual';
+import { elementAt } from 'rxjs/operators';
 
 /**
  * Signup page component
@@ -33,10 +35,11 @@ export class SignupPage {
 	) {
 		this.active = true;
 		const fields = {
-			name: ['', Validators.required],
-			phone: [''],
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', Validators.required]
+			name: ['', Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z ]*$")])],
+			phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(11), Validators.minLength(10)]],
+			email: ['', [Validators.required, Validators.email, Validators.pattern(RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
+			password: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
+			password_confirmation: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6),  this.passwordmatch('password')]]
 		};
 		this.multipleCities = (this.apiService.getSettings().multiple_cities == 1);
 		if (this.multipleCities) {
@@ -46,17 +49,32 @@ export class SignupPage {
 		this.loginForm = this.builder.group(fields);
 	}
 
+	passwordmatch(field_name): ValidatorFn {
+		return (control: AbstractControl): { [key: string]: any } => {
+			let input = control.value;
+			let isValid = control.root.value[field_name] == input;
+			if (!isValid)
+				return {'equalsTo': {isValid}};
+			else
+				return null;	
+		};
+	}
+	
 	doSignup() {
 		this.util.showLoader();
 		let data = JSON.parse(JSON.stringify(this.loginForm.value));
 		this.apiService.signup(data).then(response => {
 			this.util.hideLoader();
+			if(data.password!=data.password_confirmation){
+				response.success = false;
+				this.util.alert('Passwords do not match', '');
+			}
 			if (response.success) {
 				this.push.init(this.apiService.getSettings().pushwoosh_id);
 				this.storage.set('welcomeShown', '1').then(() => {}, () => {});
 				this.nav.setRoot(TabsPage);
 			}
-			else {
+			else if (response.errors != null) {
 				this.util.alert(response.errors, '');
 			}
 		}, (data) => {
