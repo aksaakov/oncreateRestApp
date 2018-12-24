@@ -65,10 +65,6 @@ export class SignupPage {
 		let data = JSON.parse(JSON.stringify(this.loginForm.value));
 		this.apiService.signup(data).then(response => {
 			this.util.hideLoader();
-			if(data.password!=data.password_confirmation){
-				response.success = false;
-				this.util.alert('Passwords do not match', '');
-			}
 			if (response.success) {
 				this.push.init(this.apiService.getSettings().pushwoosh_id);
 				this.storage.set('welcomeShown', '1').then(() => {}, () => {});
