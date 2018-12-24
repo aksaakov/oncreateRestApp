@@ -48,7 +48,6 @@ export class ProfilePage {
 			rules['city_id'] = [user.city_id, [Validators.required]];
 			this.showCities = true;
 		}
-		this.profileForm = this.builder.group(rules);
 	}
 
 	save() {
