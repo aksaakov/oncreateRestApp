@@ -2,7 +2,7 @@
 	<ion-navbar>
 		<ion-title>{{ 'profile.title' | translate }}</ion-title>
 		<ion-buttons end>
-			<button ion-button block (click)="save()">
+			<button ion-button block type="submit" (click)="save()"> 
 				{{ 'profile.save' | translate }}
 			</button>
 		</ion-buttons>
@@ -11,36 +11,49 @@
 
 <ion-content padding>
 	<form (ngSubmit)="save()" *ngIf="active" novalidate [formGroup]="profileForm" class="signup-form">
-		<ion-item>
-			<ion-label stacked>{{ 'profile.email' | translate }}</ion-label>
-			<ion-input type="text" [formControl]="profileForm.controls.email">
-			</ion-input>
-		</ion-item>
+			<p *ngIf="profileForm.controls['name'].errors && profileForm.controls['name'].dirty" class="input-error" padding>Name is not valid.</p>
+			<p *ngIf="profileForm.controls['phone'].errors && profileForm.controls['phone'].dirty" class="input-error" padding>Phone number is not valid.</p>
+			<p *ngIf="profileForm.controls['email'].errors && profileForm.controls['email'].dirty" class="input-error" padding>Email is not valid.</p>
+			<p *ngIf="profileForm.controls['password'].errors && profileForm.controls['password'].dirty" class="input-error" padding>Password must be at least 6 characters long.</p>
+			<p *ngIf="profileForm.controls['password_confirmation'].errors && profileForm.controls['password_confirmation'].dirty" class="input-error" padding>Passwords do not match.</p>			
 		<ion-item>
 			<ion-label stacked>{{ 'profile.name' | translate }}</ion-label>
-			<ion-input type="text" [formControl]="profileForm.controls.name">
+			<ion-input type="text" [formControl]="profileForm.controls.name" maxlength="28">
 			</ion-input>
 		</ion-item>
+		<ion-row>
+			<ion-col col-3>
+				<ion-item>
+					<ion-label stacked>Country</ion-label>
+					<ion-input type="tel" value="+44 " maxlength="28" readonly></ion-input>
+					</ion-item>
+			</ion-col>
+			<ion-col col-9>	
+				<ion-item>
+						<ion-label stacked>Phone Number</ion-label>
+						<ion-input type="text" maxlength="10" [formControl]="profileForm.controls.phone"></ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
 		<ion-item>
-			<ion-label stacked>{{ 'profile.phone' | translate }}</ion-label>
-			<ion-input type="text" [formControl]="profileForm.controls.phone">
-			</ion-input>
+				<ion-label stacked>{{ 'profile.email' | translate }}</ion-label>
+				<ion-input type="text" maxlength="45" [formControl]="profileForm.controls.email"></ion-input>
 		</ion-item>
-		<ion-item *ngIf="showCities">
+		<!-- <ion-item *ngIf="showCities">
 			<ion-label stacked>{{ 'profile.city' | translate }}</ion-label>
 			<ion-select placeholder="{{ 'signup.city' | translate }}" [formControl]="profileForm.controls.city_id">
 				<ion-option *ngFor="let city of cities" value="{{ city.id }}">{{ city.name }}</ion-option>
 			</ion-select>
-		</ion-item>
+		</ion-item> -->
 		<ion-item>
 			<ion-label stacked>{{ 'profile.password' | translate }}</ion-label>
-			<ion-input type="password" [formControl]="profileForm.controls.password">
+			<ion-input type="password" [formControl]="profileForm.controls.password" (ionChange)="clear()">
 			</ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>{{ 'profile.password_confirmation' | translate }}</ion-label>
-			<ion-input type="password" [formControl]="profileForm.controls.password_confirmation">
+			<ion-input type="password" [formControl]="profileForm.controls.password_confirmation" maxlength="20" [(ngModel)]="password_confirmation_field" type="password" name="password_confirmation_field">
 			</ion-input>
-		</ion-item>
+		</ion-item>			
 	</form>
 </ion-content>

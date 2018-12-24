@@ -7,8 +7,7 @@ import { TabsPage } from "../../tabs/tabs";
 import { PushService } from '../../../services/push_service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
-import { sequenceEqual } from 'rxjs/operator/sequenceEqual';
-import { elementAt } from 'rxjs/operators';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 /**
  * Signup page component
@@ -23,6 +22,7 @@ export class SignupPage {
 	public active: boolean;
 	public multipleCities = false;
 	public cities:any[] = [];
+	public password_confirmation_field:string;
 
 	constructor(
 		private apiService: APIService,
@@ -36,7 +36,7 @@ export class SignupPage {
 		this.active = true;
 		const fields = {
 			name: ['', Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z ]*$")])],
-			phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(11), Validators.minLength(10)]],
+			phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(10), Validators.minLength(10)]],
 			email: ['', [Validators.required, Validators.email, Validators.pattern(RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
 			password: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
 			password_confirmation: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6),  this.passwordmatch('password')]]
@@ -58,6 +58,10 @@ export class SignupPage {
 			else
 				return null;	
 		};
+	}
+
+	clear(){
+		this.loginForm.controls['password_confirmation'].reset();
 	}
 	
 	doSignup() {

@@ -20,7 +20,7 @@
             <p *ngIf="order.restaurant && multiR">
                 {{ order.restaurant.name }}
             </p>
-            <p><b>{{ order.total_with_tax | ecurrency }}</b></p>
+            <p><b>{{ +order.total_with_tax + +order.delivery_price | ecurrency }}</b></p>
         </ion-item>
     </ion-card>
 </ion-content>

@@ -4,16 +4,29 @@
       <img src="assets/icon.png" alt="">
     </div>
 		<form (ngSubmit)="doSignup()" *ngIf="active" novalidate [formGroup]="loginForm" class="signup-form">
+				<p *ngIf="loginForm.controls['name'].errors && loginForm.controls['name'].dirty" class="input-error" padding>Name is not valid.</p>
+				<p *ngIf="loginForm.controls['phone'].errors && loginForm.controls['phone'].dirty" class="input-error" padding>Phone number is not valid.</p>
+				<p *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" class="input-error" padding>Email is not valid.</p>
+				<p *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty" class="input-error" padding>Password must be at least 6 characters long.</p>
+				<p *ngIf="loginForm.controls['password_confirmation'].errors && loginForm.controls['password_confirmation'].dirty" class="input-error" padding>Passwords do not match.</p>
 			<ion-item>
-				<ion-input placeholder="{{ 'signup.name' | translate }}" type="text" [formControl]="loginForm.controls.name">
+				<ion-input placeholder="{{ 'signup.name' | translate }}" type="text" [formControl]="loginForm.controls.name" maxlength="28">
 				</ion-input>
 			</ion-item>
+			<ion-row>
+				<ion-col col-3>
+					<ion-item>
+						<ion-input type="tel" value="+44 " maxlength="28" readonly></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col col-9>	
+					<ion-item>
+						<ion-input placeholder="{{ 'signup.phone' | translate }}" maxlength="10" type="tel" [formControl]="loginForm.controls.phone"></ion-input>
+					</ion-item>
+				</ion-col>
+			</ion-row>
 			<ion-item>
-				<ion-input placeholder="{{ 'signup.phone' | translate }}" type="tel" [formControl]="loginForm.controls.phone">
-				</ion-input>
-			</ion-item>
-			<ion-item>
-				<ion-input placeholder="{{ 'signup.email' | translate }}" type="text" [formControl]="loginForm.controls.email">
+				<ion-input placeholder="{{ 'signup.email' | translate }}" maxlength="45" type="text" [formControl]="loginForm.controls.email">
 				</ion-input>
 			</ion-item>
 			<ion-item *ngIf="multipleCities">
@@ -22,18 +35,13 @@
 				</ion-select>
 			</ion-item>
 			<ion-item class="iconed-input">
-				<ion-input placeholder="{{ 'signup.password' | translate }}" type="password" [formControl]="loginForm.controls.password">
+				<ion-input placeholder="{{ 'signup.password' | translate }}" maxlength="20" (ionChange)="clear()" type="password" [formControl]="loginForm.controls.password">
 				</ion-input>
 			</ion-item>
 			<ion-item>
-					<ion-input id="pwd2" placeholder="{{ 'profile.password_confirmation' | translate }}" type="password" [formControl]="loginForm.controls.password_confirmation">
-					</ion-input>
-				</ion-item>
-			<p *ngIf="loginForm.controls['name'].errors && loginForm.controls['name'].dirty" class="input-error" padding>Name is not valid.</p>
-			<p *ngIf="loginForm.controls['phone'].errors && loginForm.controls['phone'].dirty" class="input-error" padding>Phone number is not valid.</p>
-			<p *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" class="input-error" padding>Email is not valid.</p>
-			<p *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty" class="input-error" padding>Password must be 6 to 20 characters long.</p>
-			<p *ngIf="loginForm.controls['password_confirmation'].errors && loginForm.controls['password_confirmation'].dirty" class="input-error" padding>Passwords do not match.</p>
+				<ion-input placeholder="{{ 'profile.password_confirmation' | translate }}" [(ngModel)]="password_confirmation_field" maxlength="20" type="password" [formControl]="loginForm.controls.password_confirmation">
+				</ion-input>
+			</ion-item>			
 			<button ion-button type="submit" block color="primary" [disabled]="loginForm.invalid">
 				{{ 'signup.button' | translate }}
 			</button>
