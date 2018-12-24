@@ -1,4 +1,4 @@
-import {NgModule, ErrorHandler, Injectable, Injector} from '@angular/core';
+import {NgModule, ErrorHandler, Injectable, Injector, enableProdMode} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler, Platform} from 'ionic-angular';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
@@ -104,3 +104,4 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class AppModule {
 }
+enableProdMode();
