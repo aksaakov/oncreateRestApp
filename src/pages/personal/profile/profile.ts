@@ -17,7 +17,6 @@ export class ProfilePage {
 	public active: boolean;
 	public cities = [];
 	public showCities = false;
-	public formIsValid = true;
 
 	constructor(
 		public navCtrl: NavController,
@@ -55,13 +54,13 @@ export class ProfilePage {
 
 	save() {		
 		let fields : string[]  = ['name','phone', 'email', 'password', 'password_confirmation'];
-		this.formIsValid = true;
+		var formIsValid = true;
 		for(let field of fields){
 			if(this.profileForm.controls[field].errors && this.profileForm.controls[field].dirty){
-				this.formIsValid = false;
+				formIsValid = false;
 			}
 		}
-		if(!this.formIsValid){
+		if(!formIsValid){
 			const fail = this.toastCtrl.create({
 				message: 'Please check if everything is correct.',
 				duration: 3000
