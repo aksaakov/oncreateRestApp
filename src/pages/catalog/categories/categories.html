@@ -26,14 +26,14 @@
   </style>
   
   <div *ngFor="let storefront of homepage; let i = index;" >
-      <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" />
-      <!-- <div style="background: url('{{storefront.image_url}}');"></div> -->
+      <!-- <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" /> -->
+      <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div>
     </div>
   <ion-card>
     <ion-card-content>
       <!--<h2>A</h2>-->
       <div style="background: white;">
-        <ion-segment [(ngModel)]="restaurant">
+        <ion-segment style="margin: 0 0 10px;" [(ngModel)]="restaurant">
           <ion-segment-button value="about">
               <ion-icon name="restaurant"></ion-icon>
           </ion-segment-button>
@@ -49,8 +49,10 @@
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
           <div *ngFor="let storefront of homepage; let i = index;">
-          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px; float: left;">{{storefront.Title}}</div>
-          <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
+          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px;">{{storefront.Title}}</div>
+          <div style="margin: 0 auto; text-align: center;">
+            <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
+          </div>
           <ion-item>   
             <div>
                 <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
@@ -105,7 +107,7 @@
         <ion-list *ngSwitchCase="'contact'">
           <ion-item>
             <table *ngFor="let contacts of homepage; let i = index;" style="padding:25px 0 15px;">
-              <tr *ngIf="contacts.address!=null"><td>Address</td><td>{{contacts.address}}</td></tr>
+              <tr *ngIf="contacts.address!=null"><td>Address</td><td style="white-space: normal;">{{contacts.address}}</td></tr>
               <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
               <tr *ngIf="contacts.email!=null"><td>Email</td><td>needs DB field in backoffice</td></tr>
               <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td><a (click)="openNewTab('https://www.facebook.com/', contacts.facebook)"> @{{contacts.facebook}}</a></td></tr>
