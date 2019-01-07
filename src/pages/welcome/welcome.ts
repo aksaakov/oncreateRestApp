@@ -14,6 +14,7 @@ import { APIService } from '../../services/api_service';
 
 export class Welcome {
     public signup = false;
+    public homepage;
 
     constructor(private nav: NavController,
                 private storage: Storage,
@@ -21,6 +22,7 @@ export class Welcome {
                 private api: APIService
     ) {
         this.signup = (this.api.getSettings().signup_required == 1);
+        this.homepage = this.getHomepageDetails();
     }
 
     goToSignup() {
@@ -41,5 +43,14 @@ export class Welcome {
         // StatusBar.overlaysWebView(false);
         // StatusBar.backgroundColorByHexString('F8F8F8');
         // StatusBar.show();
+    }
+
+    getHomepageDetails() {
+        let result = [];
+        this.api.getHomepageDetails().then((response) => {
+            this.homepage = response.json();
+            result.push(response);
+        });
+        return result;
     }
 }

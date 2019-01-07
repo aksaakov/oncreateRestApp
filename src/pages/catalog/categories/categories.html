@@ -109,7 +109,7 @@
             <table *ngFor="let contacts of homepage; let i = index;" style="padding:25px 0 15px;">
               <tr *ngIf="contacts.address!=null"><td>Address</td><td style="white-space: normal;">{{contacts.address}}</td></tr>
               <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
-              <tr *ngIf="contacts.email!=null"><td>Email</td><td>needs DB field in backoffice</td></tr>
+              <tr *ngIf="contacts.email!=null"><td>Email</td><td>{{contacts.email}}</td></tr>
               <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td><a (click)="openNewTab('https://www.facebook.com/', contacts.facebook)"> @{{contacts.facebook}}</a></td></tr>
               <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td><a (click)="openNewTab('https://www.twitter.com/', contacts.twitter)"> @{{contacts.twitter}}</a></td></tr>
               <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td><a (click)="openNewTab('https://www.instagram.com/', contacts.instagram)"> @{{contacts.instagram}}</a></td></tr>

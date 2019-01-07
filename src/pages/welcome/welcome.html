@@ -4,8 +4,8 @@
             <!--<span class="welcome-icon">-->
               <!--<span class="inner"></span>-->
             <!--</span>-->
-            <span class="welcome-text">
-                {{ 'welcome.welcome' | translate }}<br/>Restaurant X
+            <span *ngFor="let storefront of homepage; let i = index;" class="welcome-text">
+                {{ 'welcome.welcome' | translate }}<br/>{{storefront.Title}}
             </span>
         </p>
     </div>
