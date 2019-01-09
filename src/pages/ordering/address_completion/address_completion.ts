@@ -47,7 +47,9 @@ export class AddressCompletion {
             me.autocompleteItems = [];
             me.zone.run(function () {
                 predictions.forEach(function (prediction) {
-                    me.autocompleteItems.push(prediction.description);
+                    if(prediction.description != null){
+                        me.autocompleteItems.push(prediction.description);
+                    }                    
                 });
             });
         });

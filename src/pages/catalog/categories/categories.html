@@ -49,16 +49,16 @@
       <div [ngSwitch]="restaurant">
         <ion-list *ngSwitchCase="'about'">
           <div *ngFor="let storefront of homepage; let i = index;">
-          <div class="restaurant-title" style="font-size:1.6rem; padding:25px 0 15px;">{{storefront.Title}}</div>
-          <div style="margin: 0 auto; text-align: center;">
-            <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
-          </div>
+          <div class="restaurant-title" style="font-size:1.6rem; padding:15px 0 5px;">{{storefront.Title}}</div>
           <ion-item>   
             <div>
                 <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
                 <p  *ngIf="showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
-              </div> 
+            </div> 
           </ion-item>
+          <div style="margin: 0 auto; text-align: center;">
+            <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
+          </div>
           </div>
         </ion-list>
 

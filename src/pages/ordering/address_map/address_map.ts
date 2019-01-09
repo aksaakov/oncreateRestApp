@@ -71,13 +71,51 @@ export class AddressMap {
             }
         });
     }
+
+    getCurrentLocation(){
+        this.util.showLoader();
+        navigator.geolocation.getCurrentPosition((position) => {
+            var mylocation = new google.maps.Marker({
+                clickable: false,
+                icon: {
+                    url: './assets/icon/current-location.png',
+                    size: new google.maps.Size(40,40),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(20, 20),
+                },
+                shadow: null,
+                zIndex: 999,
+                map: this.map// your google.maps.Map object
+            });
+            // if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos) {
+            //     var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            //     mylocation.setPosition(me);
+            // }, function(error) {
+            //     // ...
+            // });
+            this.lat = position.coords.latitude;
+            this.lng = position.coords.longitude;
+            let ll = { lat: this.lat, lng: this.lng };
+            this.map.setCenter(ll);
+            mylocation.setPosition(ll)
+            this.marker.setPosition(ll);
+            this.geocodeCoords();
+            this.util.hideLoader();
+        }, () => {
+            this.util.hideLoader();
+        }, {
+            timeout: 15000,
+            maximumAge: 600000,
+            enableHighAccuracy: true
+        });
+    }
     
     loadMap() {
-        this.util.showLoader();
-        let latLng = new google.maps.LatLng(51.5014, 0.1419);
+        let latLng = new google.maps.LatLng(51.5103, -0.0774);
         let mapOptions = {
             center: latLng,
             zoom: 15,
+            streetViewControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -85,6 +123,7 @@ export class AddressMap {
             position: latLng,
             map: this.map
         });
+
         let delivery_areas = this.apiService.getDeliveryAreas();
         delivery_areas.forEach((area) => {
             let poly = new google.maps.Polygon({
@@ -110,21 +149,7 @@ export class AddressMap {
             this.lng = this.map.getCenter().lng();
             this.marker.setPosition({ lat: this.lat, lng: this.lng });
         }.bind(this));
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.lat = position.coords.latitude;
-            this.lng = position.coords.longitude;
-            let ll = { lat: this.lat, lng: this.lng };
-            this.map.setCenter(ll);
-            this.marker.setPosition(ll);
-            this.geocodeCoords();
-            this.util.hideLoader();
-        }, () => {
-            this.util.hideLoader();
-        }, {
-            timeout: 30000,
-            maximumAge: 600000,
-            enableHighAccuracy: true
-        });
+        this.getCurrentLocation()
     }
 
     closeModal() {
@@ -174,11 +199,13 @@ export class AddressMap {
             }
         }, function (predictions, status) {
             me.autocompleteItems = [];
-            me.zone.run(function () {
-                predictions.forEach(function (prediction) {
-                    me.autocompleteItems.push(prediction.description);
+            if(predictions!=null){
+                me.zone.run(function () {
+                    predictions.forEach(function (prediction) {
+                        me.autocompleteItems.push(prediction.description);
+                    });
                 });
-            });
+            }
         });
     }
 
@@ -200,5 +227,5 @@ export class AddressMap {
                 });
             }
         });
-    }
+    } 
 }
