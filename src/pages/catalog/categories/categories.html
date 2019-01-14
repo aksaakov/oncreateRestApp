@@ -9,119 +9,123 @@
         </ion-title>
     </ion-navbar> -->
 </ion-header>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color:darkgray;
+  }
+</style>
 <ion-content>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      color:darkgray;
-    }
-  </style>
-  
   <div *ngFor="let storefront of homepage; let i = index;" >
-      <!-- <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" /> -->
-      <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div>
-    </div>
-  <ion-card>
-    <ion-card-content>
-      <!--<h2>A</h2>-->
-      <div style="background: white;">
-        <ion-segment style="margin: 0 0 10px;" [(ngModel)]="restaurant">
-          <ion-segment-button value="about">
-              <ion-icon name="restaurant"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value="hours">
-              <ion-icon name="clock"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value="contact">
-              <ion-icon name="call"></ion-icon>
-          </ion-segment-button>
-        </ion-segment>
-      </div>
+    <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" style="position: fixed; z-index:-1; height:350px;" />
+    <!-- <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div> -->
+    
+  </div>
+</ion-content>
+<ion-content>
+  <div style="height:350px; width:100%;"></div>
+  <div style="background:white; padding-top:10px; padding-bottom:10px;">
+    <ion-card>
+      <ion-card-content>
+        <!--<h2>A</h2>-->
+        <div style="background: white;">
+          <ion-segment style="margin: 0 0 10px;" [(ngModel)]="restaurant">
+            <ion-segment-button value="about">
+                <ion-icon name="restaurant"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="hours">
+                <ion-icon name="clock"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="contact">
+                <ion-icon name="call"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
 
-      <div [ngSwitch]="restaurant">
-        <ion-list *ngSwitchCase="'about'">
-          <div *ngFor="let storefront of homepage; let i = index;">
-          <div class="restaurant-title" style="font-size:1.6rem; padding:15px 0 5px;">{{storefront.Title}}</div>
-          <ion-item>   
-            <div>
-                <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
-                <p  *ngIf="showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
-            </div> 
-          </ion-item>
-          <div style="margin: 0 auto; text-align: center;">
-            <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
-          </div>
-          </div>
-        </ion-list>
+        <div [ngSwitch]="restaurant">
+          <ion-list *ngSwitchCase="'about'">
+            <div *ngFor="let storefront of homepage; let i = index;">
+            <div class="restaurant-title" style="font-size:1.6rem; padding:15px 0 5px;">{{storefront.Title}}</div>
+            <ion-item>   
+              <div>
+                  <p  *ngIf="!showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description | words : 30}}<a (click)="toggleTextBtn()"> show more</a></p>
+                  <p  *ngIf="showtext" style="white-space: normal; text-align:justify; font-size:1.6rem;">{{ storefront.Description}}<a (click)="toggleTextBtn()"> show less</a></p>
+              </div> 
+            </ion-item>
+            <div style="margin: 0 auto; text-align: center;">
+              <button ion-button small round outline class="news-button" (click)="openNewsFeed()"> Latest News</button>
+            </div>
+            </div>
+          </ion-list>
 
-        <ion-list *ngSwitchCase="'hours'">
-          <ion-item>
-            <table *ngFor="let working_hours of homepage; let i = index;" style="padding:25px 0 15px;">
-              <tr>
-                <td>Monday</td>
-                <td *ngIf="working_hours.mon_open!=null&&working_hours.mon_close!=null">{{working_hours.mon_open}} - {{working_hours.mon_close}}</td>
-                <td *ngIf="working_hours.mon_open==null&&working_hours.mon_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Tuesday</td>
-                <td *ngIf="working_hours.tue_open!=null&&working_hours.tue_close!=null">{{working_hours.tue_open}} -  {{working_hours.tue_close}}</td>
-                <td *ngIf="working_hours.tue_open==null&&working_hours.tue_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Wednesday</td>
-                <td *ngIf="working_hours.wed_open!=null&&working_hours.wed_close!=null">{{working_hours.wed_open}} - {{working_hours.wed_close}}</td>
-                <td *ngIf="working_hours.wed_open==null&&working_hours.wed_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Thursday</td>
-                <td *ngIf="working_hours.thu_open!=null&&working_hours.thu_close!=null">{{working_hours.thu_open}} - {{working_hours.thu_close}}</td>
-                <td *ngIf="working_hours.thu_open!==null&&working_hours.thu_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Friday</td>
-                <td *ngIf="working_hours.fri_open!=null&&working_hours.fri_close!=null">{{working_hours.fri_open}} - {{working_hours.fri_close}}</td>
-                <td *ngIf="working_hours.fri_open==null&&working_hours.fri_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Saturday</td>
-                <td *ngIf="working_hours.sat_open!=null&&working_hours.sat_close!=null">{{working_hours.sat_open}} - {{working_hours.sat_close}}</td>
-                <td *ngIf="working_hours.sat_open==null&&working_hours.sat_close==null">Closed</td>
-              </tr>
-              <tr>
-                <td>Sunday</td>
-                <td *ngIf="working_hours.sun_open!=null&&working_hours.sun_close!=null">{{working_hours.sun_open}} - {{working_hours.sun_close}}</td>
-                <td *ngIf="working_hours.sun_open==null&&working_hours.sun_close==null">Closed</td>
-              </tr>
-            </table>
-          </ion-item>
-        </ion-list>
+          <ion-list *ngSwitchCase="'hours'">
+            <ion-item>
+              <table *ngFor="let working_hours of homepage; let i = index;" style="padding:25px 0 15px;">
+                <tr>
+                  <td>Monday</td>
+                  <td *ngIf="working_hours.mon_open!=null&&working_hours.mon_close!=null">{{working_hours.mon_open}} - {{working_hours.mon_close}}</td>
+                  <td *ngIf="working_hours.mon_open==null&&working_hours.mon_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Tuesday</td>
+                  <td *ngIf="working_hours.tue_open!=null&&working_hours.tue_close!=null">{{working_hours.tue_open}} -  {{working_hours.tue_close}}</td>
+                  <td *ngIf="working_hours.tue_open==null&&working_hours.tue_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Wednesday</td>
+                  <td *ngIf="working_hours.wed_open!=null&&working_hours.wed_close!=null">{{working_hours.wed_open}} - {{working_hours.wed_close}}</td>
+                  <td *ngIf="working_hours.wed_open==null&&working_hours.wed_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Thursday</td>
+                  <td *ngIf="working_hours.thu_open!=null&&working_hours.thu_close!=null">{{working_hours.thu_open}} - {{working_hours.thu_close}}</td>
+                  <td *ngIf="working_hours.thu_open!==null&&working_hours.thu_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Friday</td>
+                  <td *ngIf="working_hours.fri_open!=null&&working_hours.fri_close!=null">{{working_hours.fri_open}} - {{working_hours.fri_close}}</td>
+                  <td *ngIf="working_hours.fri_open==null&&working_hours.fri_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Saturday</td>
+                  <td *ngIf="working_hours.sat_open!=null&&working_hours.sat_close!=null">{{working_hours.sat_open}} - {{working_hours.sat_close}}</td>
+                  <td *ngIf="working_hours.sat_open==null&&working_hours.sat_close==null">Closed</td>
+                </tr>
+                <tr>
+                  <td>Sunday</td>
+                  <td *ngIf="working_hours.sun_open!=null&&working_hours.sun_close!=null">{{working_hours.sun_open}} - {{working_hours.sun_close}}</td>
+                  <td *ngIf="working_hours.sun_open==null&&working_hours.sun_close==null">Closed</td>
+                </tr>
+              </table>
+            </ion-item>
+          </ion-list>
 
-        <ion-list *ngSwitchCase="'contact'">
-          <ion-item>
-            <table *ngFor="let contacts of homepage; let i = index;" style="padding:25px 0 15px;">
-              <tr *ngIf="contacts.address!=null"><td>Address</td><td style="white-space: normal;">{{contacts.address}}</td></tr>
-              <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
-              <tr *ngIf="contacts.email!=null"><td>Email</td><td>{{contacts.email}}</td></tr>
-              <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td><a (click)="openNewTab('https://www.facebook.com/', contacts.facebook)"> @{{contacts.facebook}}</a></td></tr>
-              <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td><a (click)="openNewTab('https://www.twitter.com/', contacts.twitter)"> @{{contacts.twitter}}</a></td></tr>
-              <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td><a (click)="openNewTab('https://www.instagram.com/', contacts.instagram)"> @{{contacts.instagram}}</a></td></tr>
-            </table>
-          </ion-item>
-        </ion-list>
-      </div>
-    </ion-card-content>
-  </ion-card>
+          <ion-list *ngSwitchCase="'contact'">
+            <ion-item>
+              <table *ngFor="let contacts of homepage; let i = index;" style="padding:25px 0 15px;">
+                <tr *ngIf="contacts.address!=null"><td>Address</td><td style="white-space: normal;">{{contacts.address}}</td></tr>
+                <tr *ngIf="contacts.phone!=null"><td>Phone</td><td>{{contacts.phone}}</td></tr>
+                <tr *ngIf="contacts.email!=null"><td>Email</td><td><a (click)="openNewTab('mailto:', contacts.email)"> {{contacts.email}}</a></td></tr>
+                <tr *ngIf="contacts.facebook!=null"><td>Facebook</td><td><a (click)="openNewTab('https://www.facebook.com/', contacts.facebook)"> @{{contacts.facebook}}</a></td></tr>
+                <tr *ngIf="contacts.twitter!=null"><td>Twitter</td><td><a (click)="openNewTab('https://www.twitter.com/', contacts.twitter)"> @{{contacts.twitter}}</a></td></tr>
+                <tr *ngIf="contacts.instagram!=null"><td>Instagram</td><td><a (click)="openNewTab('https://www.instagram.com/', contacts.instagram)"> @{{contacts.instagram}}</a></td></tr>
+              </table>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
   <!-- <ion-card> -->
-  <div *ngIf="layout == 0">
+  <div *ngIf="layout == 0"  style="background:white;">
       <ion-card-content>
         <div *ngFor="let category of categories; let i = index;" (click)="showDetails(category)" tappable class="category-item" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
           <div class="title">{{ category.name }}</div>

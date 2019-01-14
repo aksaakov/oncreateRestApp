@@ -52,7 +52,7 @@ export class OrderPage {
     this.orderForm = this.builder.group({
       name: [`${this.userData.name}`, Validators.required],
       address: ['', Validators.required],
-      phone: [`${this.userData.phone}`, Validators.required],
+      phone: ['+44' + `${this.userData.phone}`, Validators.required],
       promo_code: [''],
       loyalty: [0, Validators.max(this.userData.loyalty_reward)],
       payment_method: ['cash'],
