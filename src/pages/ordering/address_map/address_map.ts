@@ -103,10 +103,13 @@ export class AddressMap {
             this.util.hideLoader();
         }, () => {
             this.util.hideLoader();
+            this.util.alert('Location is disabled.', '');
         }, {
-            timeout: 15000,
+            timeout: 4000,
             maximumAge: 600000,
             enableHighAccuracy: true
+            
+
         });
     }
     
@@ -114,7 +117,7 @@ export class AddressMap {
         let latLng = new google.maps.LatLng(51.5103, -0.0774);
         let mapOptions = {
             center: latLng,
-            zoom: 15,
+            zoom: 17,
             disableDefaultUI: true,
             streetViewControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP,

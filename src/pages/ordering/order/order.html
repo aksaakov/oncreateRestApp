@@ -29,7 +29,7 @@
     </ion-item>
     <button type="button" ion-item detail-none (click)="showAddressWindow()">
       <ion-label fixed>{{ 'order.address' | translate }}</ion-label>
-      <ion-textarea class="thetxtarea" disabled placeholder="{{ 'order.click_to_write' | translate }}" type="text"
+      <ion-textarea placeholder="{{ 'order.click_to_write' | translate }}" type="text"
                  [formControl]="orderForm.controls.address"></ion-textarea>
     </button>
     <ion-item>

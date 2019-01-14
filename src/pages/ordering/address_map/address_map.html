@@ -9,7 +9,7 @@
                     <ion-input disabled [(ngModel)]="address"></ion-input>
                 </ion-item>
             </ion-col>
-            <ion-col style="max-width: 20px; max-height: 20px">
+            <ion-col style="max-width: 50px; min-width: 30px;">
                     <button ion-button block outline (click)="getCurrentLocation()"><ion-icon name="radio-button-on"></ion-icon></button>
             </ion-col>    
         </ion-row>
@@ -36,7 +36,7 @@
         </ion-toolbar>
     </ion-header>
     <ion-content>
-        <ion-list class="address-variants" style="margin-top:100px;">
+        <ion-list class="address-variants" style="margin-top:auto;">
             <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
                 {{ item }}
             </ion-item>
