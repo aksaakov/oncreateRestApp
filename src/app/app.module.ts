@@ -24,6 +24,8 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {EcurrencyPipeModule} from '../pipes/ecurrency.module';
 
+import { ParallaxHeader } from '../directives/parallax-header/parallax-header';
+
 Pro.init('5d523476', {
   appVersion: '1.2.1'
 });
@@ -60,7 +62,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
     TabsPage,
     Welcome,
-    Loading
+    Loading,
+    ParallaxHeader
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
