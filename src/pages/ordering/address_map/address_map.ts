@@ -115,8 +115,10 @@ export class AddressMap {
         let mapOptions = {
             center: latLng,
             zoom: 15,
+            disableDefaultUI: true,
             streetViewControl: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+
         };
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
         this.marker = new google.maps.Marker({
