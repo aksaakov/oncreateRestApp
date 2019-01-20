@@ -37,10 +37,12 @@
     "cordova-android": "6.4.0",
     "cordova-browser": "5.0.3",
     "cordova-custom-config": "^5.0.2",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-ionic-webview": "~3.1.1",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-stripe": "^1.5.3",
@@ -98,7 +100,8 @@
       "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
