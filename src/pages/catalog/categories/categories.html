@@ -24,11 +24,11 @@
 </style>
 <ion-content>
   <div *ngFor="let storefront of homepage; let i = index;" >
-    <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}" style="position: fixed; z-index:-1; height:350px;" />
-    <!-- <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div> -->
+    <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}"/>
+    <!-- <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div> style="position: fixed; z-index:-1; height:350px;"  -->
     
   </div>
-  <div style="height:350px; width:100%;"></div>
+  <!--<div style="height:350px; width:100%;"></div>-->
   <div style="background:white; padding-top:10px; padding-bottom:10px;">
     <ion-card>
       <ion-card-content>
