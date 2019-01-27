@@ -7,6 +7,7 @@ import { APIService } from '../../../services/api_service';
  */
 @IonicPage()
 @Component({
+    selector: 'page-home',
     templateUrl: 'categories.html'
 })
 
@@ -19,6 +20,7 @@ export class CategoriesPage {
     public newsFeed;
     public loggedIn = false;
     public layout = 0;
+    public headerSpacing;
 
     restaurant: string = "about";
     showtext = false;
@@ -36,6 +38,7 @@ export class CategoriesPage {
         this.restaurantId = params.get('restaurant_id');
         this.rootCategory = params.get('root');
         this.loggedIn = this.apiService.isLoggedIn();
+        this.headerSpacing = 200;
     }
 
     ionViewWillEnter() {

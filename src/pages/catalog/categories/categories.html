@@ -8,6 +8,12 @@
             <span *ngIf="!rootCategory">{{ 'catalog.title' | translate }}</span>
         </ion-title>
     </ion-navbar> -->
+  <!--<ion-navbar color="dark">-->
+    <!--<ion-title>-->
+      <!--Profile-->
+    <!--</ion-title>-->
+  <!--</ion-navbar>-->
+
 </ion-header>
 <style>
   table {
@@ -22,14 +28,20 @@
     color:darkgray;
   }
 </style>
-<ion-content>
-  <div *ngFor="let storefront of homepage; let i = index;" >
-    <img src="{{storefront.image_url}}" alt="{{ 'welcome.app_name' | translate }}"/>
-    <!-- <div class="mainFeatImg" [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'}"></div> style="position: fixed; z-index:-1; height:350px;"  -->
-    
-  </div>
-  <!--<div style="height:350px; width:100%;"></div>-->
-  <div style="background:white; padding-top:10px; padding-bottom:10px;">
+<!-- parallax header-->
+<ion-header>
+  <shrinking-segment-header *ngFor="let storefront of homepage;"
+                            [scrollArea]="myContent" headerHeight="200"
+                            [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'
+                            , '-webkit-background-size' : 'cover'
+                            , 'background-position' : 'center'}">
+  </shrinking-segment-header>
+</ion-header>
+
+<ion-content fullscreen #myContent  style="padding-top: 200px">
+
+
+  <div style="background:white;">
     <ion-card>
       <ion-card-content>
         <!--<h2>A</h2>-->
