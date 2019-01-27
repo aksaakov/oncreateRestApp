@@ -16,12 +16,12 @@
 			<ion-row>
 				<ion-col col-4>
 					<ion-item>
-						<ion-input type="tel" value="+44 " maxlength="28" readonly></ion-input>
+						<ion-input type="tel" value="+44 " maxlength="28"  readonly></ion-input>
 					</ion-item>
 				</ion-col>
 				<ion-col col-8>	
 					<ion-item>
-						<ion-input placeholder="{{ 'signup.phone' | translate }}" maxlength="10" type="tel" [formControl]="loginForm.controls.phone"></ion-input>
+						<ion-input placeholder="{{ 'signup.phone' | translate }}" maxlength="10" type="tel" pattern="[0-9]*" [formControl]="loginForm.controls.phone"></ion-input>
 					</ion-item>
 				</ion-col>
 			</ion-row>

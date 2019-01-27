@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CartService} from '../../../services/cart_service';
 import {APIService} from "../../../services/api_service";
 import {OrderHistoryService} from "../../../services/order_history_service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IonicPage, AlertController, ViewController, LoadingController, ModalController} from 'ionic-angular';
 import {Stripe} from '@ionic-native/stripe';
 import {PayPal, PayPalPayment, PayPalConfiguration} from '@ionic-native/paypal';
@@ -28,6 +28,10 @@ export class OrderPage {
   public cFullPrice = 0;
   public cLoyaltyUsed = 0;
   public userData: any = {};
+  public cardForm: FormGroup;
+
+  private stripePushed = false;
+
 
   constructor(
     private cart: CartService,
@@ -57,6 +61,12 @@ export class OrderPage {
       loyalty: [0, Validators.max(this.userData.loyalty_reward)],
       payment_method: ['cash'],
       comment: ''
+    });
+    this.cardForm = this.builder.group({
+      number: ['', Validators.required],
+      expMonth: ['', Validators.required],
+      expYear: ['', Validators.required],
+      cvc: ['', Validators.required]
     });
     this.formReady = true;
     this.discountPrice = null;
@@ -294,5 +304,27 @@ export class OrderPage {
       this.cLoyaltyUsed = this.cTotalPrice;
       this.orderForm.controls['loyalty'].setValue(this.cLoyaltyUsed);
     }
+  }
+
+  toggleStripeForm(payMethod){
+    if(payMethod == 'stripe'){
+      switch(this.stripePushed) {
+        case true: {
+          this.stripePushed = false;
+          break;
+        }
+        case false: {
+          this.stripePushed = true;
+          break;
+        }
+        default: {
+          this.stripePushed = false;
+          break;
+        }
+      }
+    } else {
+      this.stripePushed = false;
+    }
+
   }
 }
