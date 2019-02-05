@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CartService} from '../../../services/cart_service';
 import {APIService} from "../../../services/api_service";
 import {OrderHistoryService} from "../../../services/order_history_service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {IonicPage, AlertController, ViewController, LoadingController, ModalController} from 'ionic-angular';
 import {Stripe} from '@ionic-native/stripe';
 import {PayPal, PayPalPayment, PayPalConfiguration} from '@ionic-native/paypal';
@@ -28,7 +28,7 @@ export class OrderPage {
   public cFullPrice = 0;
   public cLoyaltyUsed = 0;
   public userData: any = {};
-  public cardForm: FormGroup;
+  public cardForm;
 
   private stripePushed = false;
 
@@ -63,13 +63,38 @@ export class OrderPage {
       comment: ''
     });
     this.cardForm = this.builder.group({
-      number: ['', Validators.required],
-      expMonth: ['', Validators.required],
-      expYear: ['', Validators.required],
-      cvc: ['', Validators.required]
+      number: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(16), Validators.minLength(16)]],
+      expMonth: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2), Validators.minLength(1), this.checkExpiry('expMonth')]],
+      expYear: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2), Validators.minLength(2), this.checkExpiry('expYear')]],
+      cvc: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(4), Validators.minLength(2)]]
     });
     this.formReady = true;
     this.discountPrice = null;
+  }
+
+  checkExpiry(value): ValidatorFn {
+
+    if (value == 'expYear') {
+      return (control: AbstractControl): { [key: string]: any } => {
+        let input = control.value;
+        let year = (new Date()).getFullYear().toString().substr(-2);
+        let isValid = input >= year;
+        if (!isValid)
+          return {'equalsTo': {isValid}};
+        else
+          return null;
+      }
+    } else if (value == 'expMonth') {
+      return (control: AbstractControl): { [key: string]: any } => {
+        let input = control.value;
+        let month = (new Date()).getMonth() + 1;
+        let isValid = input >= month && month < 12;
+        if (!isValid)
+          return {'equalsTo': {isValid}};
+        else
+          return null;
+      }
+    }
   }
 
   showAddressWindow() {
@@ -216,8 +241,12 @@ export class OrderPage {
    * Call PayPal dialog, get the card token than place an order
    */
   payStripe() {
-    let modal = this.modalCtrl.create('CreditCardInput');
-    modal.onDidDismiss((data) => {
+    let data = {
+      number: this.cardForm.value.number,
+      expMonth: this.cardForm.value.expMonth,
+      expYear: this.cardForm.value.expYear,
+      cvc: this.cardForm.value.cvc
+    };
       if (data && data.number) {
         let loading = this.loadingCtrl.create();
         loading.present();
@@ -227,13 +256,12 @@ export class OrderPage {
             this.orderData.stripe_token = token.id;
             this.realPlaceOrder();
           })
-          .catch(error => {
+          .catch(() => {
             loading.dismiss();
             this.util.alert(this.translate.instant('order.payment_error'), '');
           });
       }
-    });
-    modal.present();
+
   }
 
   /**
@@ -251,6 +279,12 @@ export class OrderPage {
     this.orderData.customer_id = this.apiService.getUserData().id;
     this.orderData.restaurant_id = this.cart.getItems()[0].product.restaurant_id;
     this.orderData.comment = this.orderForm.value.comment;
+
+    this.orderData.number = this.cardForm.value.number;
+    this.orderData.expMonth = this.cardForm.value.expMonth;
+    this.orderData.expYear = this.cardForm.value.expYear;
+    this.orderData.cvc = this.cardForm.value.cvc;
+
     if (this.orderData.payment_method == 'cash') {
       this.realPlaceOrder();
     }
@@ -306,25 +340,7 @@ export class OrderPage {
     }
   }
 
-  toggleStripeForm(payMethod){
-    if(payMethod == 'stripe'){
-      switch(this.stripePushed) {
-        case true: {
-          this.stripePushed = false;
-          break;
-        }
-        case false: {
-          this.stripePushed = true;
-          break;
-        }
-        default: {
-          this.stripePushed = false;
-          break;
-        }
-      }
-    } else {
-      this.stripePushed = false;
-    }
-
+  toggleStripeForm(payMethod) {
+    this.stripePushed = payMethod == 'stripe';
   }
 }

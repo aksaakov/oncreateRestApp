@@ -2,6 +2,7 @@
 .thetxtarea, .thetxtarea textarea {
   height:100px;
 }
+
 .numbering {
   font-size: 1.4em;
 }
@@ -56,28 +57,28 @@
 
       <div *ngIf="stripePushed" style="padding-bottom: 30px; margin-left: 30px; margin-right: 30px;">
         <br>
-        <form [formGroup]="cardForm" (ngSubmit)="pay()" novalidate>
+        <form [formGroup]="cardForm" novalidate>
           <ion-item>
-            <ion-label stacked>{{ 'credit_card.number' | translate }}</ion-label>
-            <ion-input type="text" pattern="[0-9]*" [formControl]="cardForm.controls.number"></ion-input>
+            <ion-label [class.input-error]="cardForm.controls['number'].invalid" stacked>{{ 'credit_card.number' | translate }}</ion-label>
+            <ion-input type="text" pattern="[0-9]*" id="creditcard_num" maxlength="16" [formControl]="cardForm.controls.number"></ion-input>
           </ion-item>
           <ion-row>
             <ion-col>
               <ion-item>
-                <ion-label stacked>Exp MM</ion-label>
-                <ion-input type="text" pattern="[0-9]*" [formControl]="cardForm.controls.expMonth"></ion-input>
+                <ion-label [class.input-error]="cardForm.controls['expMonth'].invalid" stacked>Exp MM</ion-label>
+                <ion-input type="text" pattern="[0-9]*"  maxlength="2" [formControl]="cardForm.controls.expMonth"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col>
               <ion-item>
-                <ion-label stacked>Exp YY</ion-label>
-                <ion-input type="text" pattern="[0-9]*" [formControl]="cardForm.controls.expYear"></ion-input>
+                <ion-label [class.input-error]="cardForm.controls['expYear'].invalid" stacked>Exp YY</ion-label>
+                <ion-input type="text" pattern="[0-9]*" maxlength="2" [formControl]="cardForm.controls.expYear"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-item>
-            <ion-label stacked>{{ 'credit_card.cvc' | translate }}</ion-label>
-            <ion-input type="text" pattern="[0-9]*" [formControl]="cardForm.controls.cvc"></ion-input>
+            <ion-label [class.input-error]="cardForm.controls['cvc'].invalid" stacked>{{ 'credit_card.cvc' | translate }}</ion-label>
+            <ion-input type="text" pattern="[0-9]*" maxlength="4" [formControl]="cardForm.controls.cvc"></ion-input>
           </ion-item>
           <!--<button type="submit" ion-button block primary>{{ 'credit_card.pay' | translate }}</button>-->
           <!--<button (click)="closeModal()" type="button" ion-button block>{{ 'credit_card.cancel' | translate }}</button>-->

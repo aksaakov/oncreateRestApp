@@ -28,9 +28,8 @@
     color:darkgray;
   }
 </style>
-<!-- parallax header-->
 <ion-header>
-  <shrinking-segment-header *ngFor="let storefront of homepage;"
+  <shrinking-segment-header *ngFor="let storefront of homepage; let i = index;"
                             [scrollArea]="myContent" headerHeight="200"
                             [ngStyle]="{'background-image': 'url(' + storefront.image_url + ')'
                             , '-webkit-background-size' : 'cover'
@@ -40,7 +39,7 @@
 
 <ion-content fullscreen #myContent  style="padding-top: 200px">
 
-
+  <!--<div style="height:350px; width:100%;"></div>-->
   <div style="background:white;">
     <ion-card>
       <ion-card-content>
