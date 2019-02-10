@@ -19,17 +19,18 @@
 <ion-content padding>
   <form *ngIf="formReady" [formGroup]="orderForm" (ngSubmit)="placeOrder(orderForm.value)" novalidate>
     <ion-item>
-      <ion-label fixed>{{ 'order.name' | translate }}</ion-label>
-      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text" style="color:gray"
-                 [formControl]="orderForm.controls.name" readonly></ion-input>
+      <ion-label [class.input-error-regular]="orderForm.controls['name'].invalid" fixed>{{ 'order.name' | translate }}</ion-label>
+      <ion-input maxlength="25" placeholder="{{ 'order.click_to_write' | translate }}" type="text" style="color:gray"
+                 [formControl]="orderForm.controls.name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label fixed>{{ 'order.phone' | translate }}</ion-label>
-      <ion-input placeholder="{{ 'order.click_to_write' | translate }}" type="text" style="color:gray"
-                 [formControl]="orderForm.controls.phone" readonly></ion-input>
+      <ion-label [class.input-error-regular]="orderForm.controls['phone'].invalid" fixed>{{ 'order.phone' | translate }}</ion-label>
+      <ion-input [brmasker]="{mask:'+0', type: 'num', len: 13}"
+                 placeholder="{{ 'order.click_to_write' | translate }}" type="tel" style="color:gray"
+                 [formControl]="orderForm.controls.phone"></ion-input>
     </ion-item>
     <button type="button" ion-item detail-none (click)="showAddressWindow()">
-      <ion-label fixed>{{ 'order.address' | translate }}</ion-label>
+      <ion-label [class.input-error-regular]="orderForm.controls['address'].invalid" fixed>{{ 'order.address' | translate }}</ion-label>
       <ion-textarea placeholder="{{ 'order.click_to_write' | translate }}" type="text"
                  [formControl]="orderForm.controls.address"></ion-textarea>
     </button>
@@ -60,7 +61,7 @@
         <form [formGroup]="cardForm" novalidate>
           <ion-item>
             <ion-label [class.input-error]="cardForm.controls['number'].invalid" stacked>{{ 'credit_card.number' | translate }}</ion-label>
-            <ion-input type="text" pattern="[0-9]*" id="creditcard_num" maxlength="16" [formControl]="cardForm.controls.number"></ion-input>
+            <ion-input type="tel" [brmasker]="{mask:'0000-0000-0000-0000', len:19}" maxlength="19" [formControl]="cardForm.controls.number"></ion-input>
           </ion-item>
           <ion-row>
             <ion-col>

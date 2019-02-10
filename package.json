@@ -32,6 +32,7 @@
     "@yellowspot/ng-truncate": "^1.4.0",
     "angular-svg-round-progressbar": "^2.0.0",
     "body-parser": "^1.18.2",
+    "brmasker-ionic-3": "^1.6.3",
     "card.io.cordova.mobilesdk": "^2.1.0",
     "com.paypal.cordova.mobilesdk": "^3.5.0",
     "cordova-android": "6.4.0",

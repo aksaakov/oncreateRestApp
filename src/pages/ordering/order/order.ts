@@ -56,17 +56,17 @@ export class OrderPage {
     this.orderForm = this.builder.group({
       name: [`${this.userData.name}`, Validators.required],
       address: ['', Validators.required],
-      phone: ['+44' + `${this.userData.phone}`, Validators.required],
+      phone: ['+44' + `${this.userData.phone}`, [Validators.required, Validators.maxLength(13), Validators.minLength(13)]],
       promo_code: [''],
       loyalty: [0, Validators.max(this.userData.loyalty_reward)],
       payment_method: ['cash'],
       comment: ''
     });
     this.cardForm = this.builder.group({
-      number: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(16), Validators.minLength(16)]],
+      number: ['', [Validators.required, Validators.maxLength(19), Validators.minLength(19)]],
       expMonth: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2), Validators.minLength(1), this.checkExpiry('expMonth')]],
       expYear: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2), Validators.minLength(2), this.checkExpiry('expYear')]],
-      cvc: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(4), Validators.minLength(2)]]
+      cvc: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(4), Validators.minLength(3)]]
     });
     this.formReady = true;
     this.discountPrice = null;
@@ -88,7 +88,7 @@ export class OrderPage {
       return (control: AbstractControl): { [key: string]: any } => {
         let input = control.value;
         let month = (new Date()).getMonth() + 1;
-        let isValid = input >= month && month < 12;
+        let isValid = (input >= month) && input <= 12;
         if (!isValid)
           return {'equalsTo': {isValid}};
         else

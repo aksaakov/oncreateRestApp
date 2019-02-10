@@ -2,3 +2,13 @@
   color: rgba(222, 55, 52, 0.91);
   content: "*";
 }
+
+.input-error-regular::after{
+  color: rgba(222, 55, 52, 0.91);
+  content: "*";
+}
+
+.input-error-regular {
+  color: red;
+  position: center;
+}

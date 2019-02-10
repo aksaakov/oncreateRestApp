@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Stripe } from '@ionic-native/stripe';
 import { PayPal } from '@ionic-native/paypal';
 import { EcurrencyPipeModule } from '../../../pipes/ecurrency.module';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
 	declarations: [
@@ -13,7 +14,8 @@ import { EcurrencyPipeModule } from '../../../pipes/ecurrency.module';
 	imports: [
 		IonicPageModule.forChild(OrderPage),
 		EcurrencyPipeModule,
-		TranslateModule.forChild()
+		TranslateModule.forChild(),
+    BrMaskerModule
 	],
 	providers: [
 		Stripe,
