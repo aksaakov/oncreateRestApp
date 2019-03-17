@@ -29,7 +29,8 @@ export class OrderPage {
   public cLoyaltyUsed = 0;
   public userData: any = {};
   public cardForm;
-
+  delivery_option: string = "delivery";
+  delivery_enabled: boolean = true;
   private stripePushed = false;
 
 
@@ -342,5 +343,21 @@ export class OrderPage {
 
   toggleStripeForm(payMethod) {
     this.stripePushed = payMethod == 'stripe';
+  }
+
+  toggleDelivery(delivery_pushed){
+
+    if(delivery_pushed == 'delivery'){
+      this.orderForm.get('address').setValidators([Validators.required]);
+      this.orderForm.get('address').updateValueAndValidity();
+      this.delivery_enabled = true;
+      this.orderForm.value.address = '';
+    } else if (delivery_pushed == 'collection') {
+      this.orderForm.get('address').clearValidators();
+      this.orderForm.get('address').updateValueAndValidity();
+      this.orderForm.value.address = 'Collection';
+      this.delivery_enabled = false;
+      this.orderData.delivery_area_id = '0';
+    }
   }
 }

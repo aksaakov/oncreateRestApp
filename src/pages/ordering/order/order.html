@@ -17,6 +17,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+
+  <ion-segment [(ngModel)]="delivery_option">
+    <ion-segment-button (click)="toggleDelivery('delivery')" value="delivery">
+      <ion-label style="margin: 0;">Delivery</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="toggleDelivery('collection')" value="collection">
+      <ion-label style="margin: 0;">Collection</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
   <form *ngIf="formReady" [formGroup]="orderForm" (ngSubmit)="placeOrder(orderForm.value)" novalidate>
     <ion-item>
       <ion-label [class.input-error-regular]="orderForm.controls['name'].invalid" fixed>{{ 'order.name' | translate }}</ion-label>
@@ -29,11 +39,13 @@
                  placeholder="{{ 'order.click_to_write' | translate }}" type="tel" style="color:gray"
                  [formControl]="orderForm.controls.phone"></ion-input>
     </ion-item>
-    <button type="button" ion-item detail-none (click)="showAddressWindow()">
-      <ion-label [class.input-error-regular]="orderForm.controls['address'].invalid" fixed>{{ 'order.address' | translate }}</ion-label>
-      <ion-textarea placeholder="{{ 'order.click_to_write' | translate }}" type="text"
-                 [formControl]="orderForm.controls.address"></ion-textarea>
-    </button>
+    <div [ngSwitch]="delivery_option">
+      <button *ngSwitchCase="'delivery'" type="button" ion-item detail-none (click)="showAddressWindow()">
+        <ion-label [class.input-error-regular]="orderForm.controls['address'].invalid" fixed>{{ 'order.address' | translate }}</ion-label>
+        <ion-textarea [(ngModel)]="address_input" placeholder="{{ 'order.click_to_write' | translate }}" type="text"
+                   [formControl]="orderForm.controls.address"></ion-textarea>
+      </button>
+    </div>
     <ion-item>
       <ion-label fixed>{{ 'order.promo_code' | translate }}</ion-label>
       <ion-input placeholder="{{ 'order.optional' | translate }}" type="text"
@@ -90,13 +102,13 @@
         <ion-radio name="payment_method" value="paypal" (click)="toggleStripeForm('')"></ion-radio>
       </ion-item>
     </ion-list>
-    <ion-list *ngIf="userData.loyalty_reward > 0">
-      <ion-item>
-        <ion-label stacked>{{ 'order.use_reward' | translate:{amount: userData.loyalty_reward | ecurrency} }}</ion-label>
-        <ion-input [formControl]="orderForm.controls.loyalty" type="number" max="userData.loyalty_reward"></ion-input>
-        <button ion-button item-right type="button" (click)="useReward()">{{ 'order.use' | translate }}</button>
-      </ion-item>
-    </ion-list>
+    <!--<ion-list *ngIf="userData.loyalty_reward > 0">-->
+      <!--<ion-item>-->
+        <!--<ion-label stacked>{{ 'order.use_reward' | translate:{amount: userData.loyalty_reward | ecurrency} }}</ion-label>-->
+        <!--<ion-input [formControl]="orderForm.controls.loyalty" type="number" max="userData.loyalty_reward"></ion-input>-->
+        <!--<button ion-button item-right type="button" (click)="useReward()">{{ 'order.use' | translate }}</button>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
     <div class="cart-total -nob" style="text-align: center;">
       <ion-row>
         <ion-col col-6>
