@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ProductExtrasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+      <button style="color: #426cff;" ion-button (click)="addToCartWithExtras()">Add to cart</button>
+    </ion-buttons>
+    <ion-title>Extras</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #f3f3f3;">
+  <header class="product_name"><strong>{{ product.name }}</strong></header>
+  <div>
+    <header style="text-align:center; padding-bottom: 15px; font-size: 15px; padding-top: 20px;"><strong>Would you like extras?</strong></header>
+  </div>
+  <div *ngFor="let extra of productExtras">
+    <button ion-button block *ngIf="extra.extra_type == 'Extras'" class="extras" (click)="addExtra(extra)" color="{{ extra.extra_added ? 'light' : 'white' }}">
+      <!--<ion-row style="padding-top: 15px;">-->
+          <span class="col" style="text-align: left; padding-left: 15px;"><span *ngIf="extra.extra_added">({{extra.extra_count}}) </span>{{ extra.extra_name }}</span>
+          <span class="col" style="text-align: right; padding-right: 15px;">+ £{{ extra.extra_price }}</span>
+      <!--</ion-row>-->
+    </button>
+
+    <div *ngIf="extra.extra_added == true" class="added_info">
+      <div style="width: 80%; float:left;">
+        <span style="padding-left:35px;">£{{ extra.price_sum }}</span>
+      </div>
+      <div style="width: 20%; float:right;">
+        <button ion-button class="added_info_btn" (click)="removeExtra(extra)">
+          <ion-icon name='remove'></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <header style="text-align:center; padding-bottom: 15px; font-size: 15px; padding-top: 20px;"><strong>Anything you'd like to exclude?</strong></header>
+  </div>
+  <div *ngFor="let exclusion of productExtras">
+    <button ion-button block *ngIf="exclusion.extra_type == 'Exclusions'" class="extras" (click)="toggleExclusion(exclusion)" color="{{ exclusion.exclusion_added ? 'light' : 'white' }}">
+      <!--<ion-row style="padding-top: 15px;" >-->
+        <span class="col" style="text-align: left; padding-left: 15px;">{{ exclusion.extra_name }}</span>
+        <ion-icon *ngIf="exclusion.exclusion_added == true" name='close' style="float:right; padding-right: 15px;"></ion-icon>
+      <!--</ion-row>-->
+    </button>
+  </div>
+</ion-content>

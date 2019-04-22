@@ -1,0 +1,41 @@
+page-product-extras {
+  .col {
+    color: dimgrey;
+    font-size: 13px;
+
+  }
+
+  .product_name {
+    text-align:center;
+    color: $c_color_secondary;
+    padding-bottom: 15px;
+    font-size: 18px;
+    padding-top: 20px;
+  }
+
+  .extras {
+    width: 100%;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    margin: 0px;
+  }
+
+  .added_info {
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+    text-align: center;
+    background-color: #ededed;
+  }
+
+  .added_info_btn {
+    width: 20%;
+    height: 100%;
+    float:right;
+    margin-right: 30px;
+  }
+
+  .row:last-child .col {
+    //border-bottom: solid 1px #b4b4b4;
+  }
+}
