@@ -41,6 +41,7 @@ export class CartPage {
     else {
       this.cart.setItemCount(item.product, item.count - 1);
     }
+
   }
 
   showOrderModal() {
@@ -48,10 +49,24 @@ export class CartPage {
     this.navCtrl.push('OrderPage');
   }
 
+  extrasSum(item) {
+    let result = 0;
+    if(item.extras != null){
+      for (let i = 0; i < item.extras.length; i++) {
+        result += +item.extras[i]["extra_price"];
+      }
+      return result;
+    }
+  }
+
   cartPrice() {
     let result = 0;
     this.items.forEach((item) => {
-      result = result + item.product.price * item.count;
+      if(item.extras != null) {
+        result = result + item.product.price * item.count + this.extrasSum(item);
+      } else {
+        result = result + item.product.price * item.count;
+      }
     });
     return result;
   }

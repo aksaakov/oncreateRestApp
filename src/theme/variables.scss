@@ -27,11 +27,13 @@ $item-md-avatar-size: 64px;
 
 $c_color_primary: rgb(255, 63, 0);
 $c_color_secondary: rgb(127, 185, 0);
-$c_color_light: #b4b4b4;
+$c_color_white: rgb(255, 255, 255);
+$c_color_light: #dbdbdb;
 
 $colors: (
   primary:    $c_color_primary,
   secondary:  $c_color_secondary,
+  white: $c_color_white,
   danger:     rgb(255, 107, 0),
   light:      $c_color_light,
   dark:       #222

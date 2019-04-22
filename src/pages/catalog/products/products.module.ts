@@ -14,6 +14,6 @@ import { EcurrencyPipeModule } from '../../../pipes/ecurrency.module';
 		IonicPageModule.forChild(ProductsPage),
 		EcurrencyPipeModule,
 		TranslateModule.forChild()
-	]
+	],
 })
 export class ProductsPageModule {}

@@ -131,6 +131,11 @@ export class APIService {
     return this.http.get(url).toPromise();
   }
 
+  getProductExtras(product_id): any {
+    let url = this.rootUrl + `product_extras?product_id=${product_id}`;
+    return this.http.get(url).toPromise();
+  }
+
   getNews(page, city_id): any {
     let url = this.rootUrl + `news?page=${page}`;
     if (city_id) {

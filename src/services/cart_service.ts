@@ -50,23 +50,23 @@ export class CartService {
         return count;
     }
 
-    doAddItem(product: any, count: number): any {
+    doAddItem(product: any, count: number, extras?: any, exclusions?: any): any {
         let item = null;
         this.items.forEach((cart_item) => {
             if (cart_item.product.id == product.id) {
                 item = cart_item;
             }
         });
-        if (item == null) {
-            this.items.push({
-                product: product,
-                count: count
-            });
-        }
-        else {
-            item.count = item.count + count;
-        }
-        this.save();
+      this.items.push({
+        product: product,
+        count: count,
+        extras: extras,
+        exclusions: exclusions
+      });
+      // if (item != null) {
+      //   item.count = item.count + count;
+      // }
+      this.save();
     }
 
     hasItem(product: any): boolean {
@@ -79,7 +79,7 @@ export class CartService {
         return result;
     }
 
-    addItem(product: any, count: number): any {
+    addItem(product: any, count: number, extras?: any, exclusions?: any): any {
         if (this.items.length > 0 && this.apiService.getSettings().multiple_restaurants) {
             if (this.items[0].product.restaurant_id != product.restaurant_id) {
                 let confirm = this.alertCtrl.create({
@@ -91,18 +91,18 @@ export class CartService {
                         text: this.translate.instant('buttons.ok'),
                         handler: () => {
                             this.items = [];
-                            this.doAddItem(product, count);
+                            this.doAddItem(product, count, extras);
                         }
                     }]
                 });
                 confirm.present();
             }
             else {
-                this.doAddItem(product, count);
+                this.doAddItem(product, count, extras, exclusions);
             }
         }
         else {
-            this.doAddItem(product, count);
+            this.doAddItem(product, count, extras, exclusions);
         }
     }
 

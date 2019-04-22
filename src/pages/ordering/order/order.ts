@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CartService} from '../../../services/cart_service';
 import {APIService} from "../../../services/api_service";
 import {OrderHistoryService} from "../../../services/order_history_service";
-import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, ValidatorFn, Validators} from "@angular/forms";
 import {IonicPage, AlertController, ViewController, LoadingController, ModalController} from 'ionic-angular';
 import {Stripe} from '@ionic-native/stripe';
 import {PayPal, PayPalPayment, PayPalConfiguration} from '@ionic-native/paypal';
@@ -303,8 +303,14 @@ export class OrderPage {
 
   getFullPrice() {
     let result = 0;
+    let extras_sum = 0;
     this.cart.getItems().forEach((item) => {
-      result = result + item.product.price * item.count;
+      if(item.extras != null) {
+        for (let i = 0; i < item.extras.length; i++) {
+          extras_sum += +item.extras[i]["extra_price"];
+        }
+      }
+      result = result + item.product.price * item.count + extras_sum;
     });
     return result;
   }

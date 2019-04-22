@@ -23,6 +23,8 @@ import {OrderHistoryService} from "../services/order_history_service";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {EcurrencyPipeModule} from '../pipes/ecurrency.module';
+import {ProductsPage} from "../pages/catalog/products/products";
+import {ProductsPageModule} from "../pages/catalog/products/products.module";
 
 Pro.init('5d523476', {
   appVersion: '1.2.1'

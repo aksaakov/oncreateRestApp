@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { APIService } from '../../../services/api_service';
 import { CartService } from '../../../services/cart_service';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProductExtrasPage } from "../product-extras/product-extras";
 
 /**
  * Products list page component
@@ -12,10 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProductsPage {
     public products;
+    public productExtras = [];
     public initialProducts;
     public category;
     public searchQ = '';
     public layout = 1;
+    public added: boolean;
 
     constructor(
         private nav: NavController,
@@ -29,6 +32,7 @@ export class ProductsPage {
         if (this.category == null) {
             location.href = '/';
         }
+
     }
 
     ionViewWillEnter() {
@@ -52,7 +56,25 @@ export class ProductsPage {
     }
 
     addToCart(product) {
-        this.cart.addItem(product, 1);
-        product.added = true;
+      product.added = true;
+      this.apiService.getProductExtras(product.id).then((response) => {
+        this.productExtras = response.json();
+        if(this.productExtras.length > 0) {
+          this.showExtrasModal(product);
+        }
+        else {
+          this.cart.addItem(product, 1);
+          // product.added = this.added;
+        }
+      });
     }
+
+  private showExtrasModal(product) {
+      console.log('extras');
+      this.nav.push('ProductExtrasPage', {
+        productExtras: this.productExtras,
+        product: product,
+      });
+      // this.nav.push('ProductExtrasPage', product)
+  }
 }
