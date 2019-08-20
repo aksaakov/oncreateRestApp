@@ -1,5 +1,5 @@
 # oncreateRestApp
-<img src="src/assets/Wireframe%20screenshots/IMG_0149.PNG?raw=true" width="100" height="100">
+<img src="src/assets/Wireframe%20screenshots/IMG_0149.PNG?raw=true" width="200" height="auto">
 ![Alt text](src/assets/Wireframe%20screenshots/IMG_0149.PNG?raw=true "Title")
 
 ############################################################################
