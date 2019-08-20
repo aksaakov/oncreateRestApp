@@ -1,6 +1,6 @@
 # oncreateRestApp
 
-![alt text] ( https://drive.google.com/file/d/1M4e8yIyxorT3ClCxXRLbFlDAqkuDnN4s/view?usp=sharing )
+![alt text] ( https://github.com/aksaakov/oncreateRestApp/blob/master/src/assets/Wireframe%20screenshots/IMG_0149.PNG?raw=true )
 
 ![alt text] ( https://drive.google.com/file/d/1WzKa18GRNVf6fKDrvch0yOxOxtcocVMO/view?usp=sharing )
 
